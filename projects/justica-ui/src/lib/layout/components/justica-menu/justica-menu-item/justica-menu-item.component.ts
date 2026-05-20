@@ -7,11 +7,11 @@ import {
   Input,
   OnChanges
 } from '@angular/core';
-import {TJusticaMenu} from '../../../types';
+import {JusticaMenu} from '../../../../models/justica-menu.model';
 
-interface TItemMenuView extends TJusticaMenu {
+interface ItemMenuView extends JusticaMenu {
   hrefResolvido: string;
-  itensFilhos: TItemMenuView[];
+  itensFilhos: ItemMenuView[];
   temFilhos: boolean;
 }
 
@@ -22,12 +22,12 @@ interface TItemMenuView extends TJusticaMenu {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JusticaMenuItemComponent implements OnChanges {
-  @Input() itemMenu: TJusticaMenu | null = null;
+  @Input() itemMenu: JusticaMenu | null = null;
 
   descricao = '';
   href = '#';
   icone: string | null = null;
-  itensSubmenu: TItemMenuView[] = [];
+  itensSubmenu: ItemMenuView[] = [];
   possuiSubmenu = false;
 
   submenuAberto = false;
@@ -86,7 +86,7 @@ export class JusticaMenuItemComponent implements OnChanges {
     }
   }
 
-  private normalizarItens(itens: TJusticaMenu[]): TItemMenuView[] {
+  private normalizarItens(itens: JusticaMenu[]): ItemMenuView[] {
     return itens
       .filter((item) => item.visible !== false && item.active !== false && !!item.label)
       .map((item) => {
@@ -100,7 +100,7 @@ export class JusticaMenuItemComponent implements OnChanges {
       });
   }
 
-  private resolverHref(item: TJusticaMenu | null | undefined): string {
+  private resolverHref(item: JusticaMenu | null | undefined): string {
     if (!item) {
       return '#';
     }

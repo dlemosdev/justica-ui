@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {GestaoService} from '../../services/gestao.service';
+import {GestaoService} from '../../../services/gestao.service';
 import {Observable} from 'rxjs';
-import {TJusticaMenu} from '../../types';
+import {JusticaMenu} from '../../../models/justica-menu.model';
 
 @Component({
   selector: 'justica-menu',
@@ -11,7 +11,7 @@ import {TJusticaMenu} from '../../types';
 export class JusticaMenuComponent {
   constructor(private readonly _gestaoService: GestaoService) {}
 
-  get menu$(): Observable<TJusticaMenu[]> {
+  get menu$(): Observable<JusticaMenu[]> {
     return this._gestaoService.menu$;
   }
 }

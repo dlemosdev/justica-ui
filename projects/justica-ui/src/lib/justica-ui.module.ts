@@ -1,21 +1,18 @@
 ﻿import {ModuleWithProviders, NgModule} from '@angular/core';
-import {JusticaButtonModule} from './components';
+
+import {JusticaButtonModule} from './components/justica-button/justica-button.module';
 import {JusticaLayoutModule} from './layout/justica-layout.module';
-import {criarJusticaUiConfig, JUSTICA_UI_CONFIG, JusticaUiConfig} from './config/justica-ui.config';
+import {JusticaUiConfig, provideJusticaUi} from './configs/justica-ui.config';
 
 @NgModule({
+  imports: [JusticaButtonModule, JusticaLayoutModule],
   exports: [JusticaButtonModule, JusticaLayoutModule]
 })
 export class JusticaUiModule {
   static forRoot(configuracao?: JusticaUiConfig): ModuleWithProviders<JusticaUiModule> {
     return {
       ngModule: JusticaUiModule,
-      providers: [
-        {
-          provide: JUSTICA_UI_CONFIG,
-          useValue: criarJusticaUiConfig(configuracao)
-        }
-      ]
+      providers: [provideJusticaUi(configuracao)]
     };
   }
 }

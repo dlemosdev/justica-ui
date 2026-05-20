@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {JusticaSidebarEstadoService} from '../../services';
+import {JusticaSidebarEstadoService} from '../../../services/justica-sidebar-estado.service';
 import {JUSTICA_PROFILE_BG_DATA_URL} from '../../constants/justica-assets.const';
-import {JusticaUsuarioService } from '@justica/core/services';
-import { StringUtils } from '@justica/core/utils';
+import {JusticaUsuarioService} from '@justica/core/services';
+import {StringUtils} from '@justica/core/utils';
 
 @Component({
   selector: 'justica-sidebar',
@@ -23,15 +23,14 @@ export class JusticaSidebarComponent implements OnInit, OnDestroy {
 
   lateralRecolhida = true;
   imagemFundoSecao = `url('${JUSTICA_PROFILE_BG_DATA_URL}')`;
-  nomeUsuario: string;
-  localUsuario: string;
+  nomeUsuario = '';
+  localUsuario = '';
 
   constructor(
     private readonly _sidebarEstadoService: JusticaSidebarEstadoService,
     private readonly _justicaUsuarioService: JusticaUsuarioService,
     private readonly _detectorMudanca: ChangeDetectorRef
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.preencherInfoUsuarioLogado();

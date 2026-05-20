@@ -1,7 +1,0 @@
-{
-  "extends": "../../../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "justica", "camelCase"],
-    "component-selector": [true, "element", "justica", "kebab-case"]
-  }
-}

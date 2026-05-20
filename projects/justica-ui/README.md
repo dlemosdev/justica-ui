@@ -1,82 +1,130 @@
-﻿# @justica/ui
+# @justica/ui
 
-Biblioteca de componentes Angular do workspace Justica UI.
+Biblioteca Angular 11 de componentes, layout e estilos padronizados para aplicacoes Justica.
 
-## Instalação
+## Instalacao
 
 ```bash
 npm install @justica/ui
 ```
 
-Para testes locais com Verdaccio, use o fluxo no README principal do workspace.
+Para testes locais de publicacao, use o fluxo Verdaccio documentado no README da raiz do workspace.
 
-## Uso Básico
+## Importacao
 
 ```ts
-import { JusticaUiModule } from '@justica/ui';
+import {JusticaUiModule} from '@justica/ui';
 ```
 
-Exemplo de configuração:
+Configuracao basica:
 
 ```ts
 JusticaUiModule.forRoot({
-  enviroment: {
-    production: false,
-    apiUrl: 'http://localhost:3000'
-  },
   exibirMenu: true
 });
 ```
 
-## Uso do Layout
+Entrypoints secundarios:
 
-O layout principal da biblioteca é o componente `justica-layout`, exportado por `JusticaLayoutModule` e também pelo `JusticaUiModule`.
+```ts
+import {JusticaButtonModule, JusticaModalModule} from '@justica/ui/components';
+import {JusticaUsuario} from '@justica/ui/models';
+import {JusticaLayoutModule, TJusticaMenu} from '@justica/ui/layout';
+import {provideJusticaUi} from '@justica/ui/config';
+import {JusticaSidebarEstadoService} from '@justica/ui/services';
+```
 
-### Propriedades principais
+## API Publica
 
-- `nomeProjeto`: nome exibido no cabeçalho (padrão: `Layout`)
-- `versao`: versão exibida no cabeçalho (padrão: `1.0.0`)
-- `exibirMenu`: definido via `forRoot` em `JusticaUiModule` (padrão: `true`)
+O entrypoint publico fica em `src/public-api.ts` e exporta:
 
-### Estrutura com slots (ng-content)
+- `provideJusticaUi`
+- `JUSTICA_UI_CONFIG`
+- `JusticaUiConfig`
+- `JusticaUiModule`
+- Componentes em `lib/components`
+- Layout principal e modulo de layout
+- Tipos publicos de layout
+- `JusticaSidebarEstadoService`
+- Models publicos
+
+Entrypoints secundarios:
+
+- `components/src/public-api.ts` -> `@justica/ui/components`
+- `models/src/public-api.ts` -> `@justica/ui/models`
+- `layout/src/public-api.ts` -> `@justica/ui/layout`
+- `config/src/public-api.ts` -> `@justica/ui/config`
+- `services/src/public-api.ts` -> `@justica/ui/services`
+
+Exports internos de desenvolvimento podem existir em arquivos `index.ts`, mas consumidores devem importar pelo pacote:
+
+```ts
+import {JusticaButtonModule, JusticaUiModule} from '@justica/ui';
+```
+
+## Componentes
+
+### Botao
+
+`justica-button` suporta:
+
+- `label`
+- `icon`
+- `iconPos`: `left`, `right`, `top`, `bottom`
+- `severity`: `primary`, `secondary`, `success`, `info`, `warn`, `help`, `danger`, `contrast`, `transparent`
+- `variant`: `solid`, `outlined`, `text`, `link`
+- `size`: `small`, `normal`, `large`
+- `disabled`
+- `loading`
+- `rounded`
+- `fluid`
+- `type`: `button`, `submit`, `reset`
+- evento `aoClicar`
+
+### Modal
+
+`JusticaModalService` permite abrir componente dinamico:
+
+```ts
+this._modalService.abrirModal(ComponenteDoModal, {
+  titulo: 'Confirmacao',
+  fecharAoClicarFora: true
+});
+```
+
+Tambem e possivel usar `justica-modal` com conteudo projetado via `ng-content`.
+
+### Sidebar Item
+
+`justica-sidebar-item` recolhe a sidebar automaticamente ao detectar clique em links internos.
+
+## Layout
+
+O layout principal e `justica-layout`, exportado por `JusticaLayoutModule` e por `JusticaUiModule`.
 
 ```html
 <justica-layout nomeProjeto="Portal STJ" versao="2.3.0">
   <div justica-cabecalho-acoes>
-    <!-- ações no cabeçalho -->
+    <!-- acoes no cabecalho -->
   </div>
 
   <div justica-sidebar-itens>
     <!-- itens adicionais da sidebar -->
   </div>
 
-  <!-- conteúdo principal da página -->
   <router-outlet></router-outlet>
 </justica-layout>
 ```
 
 Slots suportados:
 
-- `[justica-cabecalho-acoes]`: área de ações no cabeçalho
-- `[justica-sidebar-itens]`: área customizável da barra lateral
-- conteúdo sem seletor: área principal da página
+- `[justica-cabecalho-acoes]`: area de acoes no header
+- `[justica-sidebar-itens]`: conteudo adicional da sidebar
+- conteudo sem seletor: area principal da pagina
 
-## Uso de Styles
+## Estilos
 
-Os estilos base da biblioteca ficam em `src/lib/styles`:
-
-- `justica-ui.css`: ponto de entrada dos estilos
-- `tokens.css`: design tokens (cores, espaçamentos, tipografia)
-- `reset.css`: reset/base global
-
-O arquivo `justica-ui.css` também importa:
-
-- fonte Roboto (Google Fonts)
-- Font Awesome (`@fortawesome/fontawesome-free`)
-
-### Como aplicar no app consumidor
-
-Adicione no `styles` do `angular.json` do app:
+Adicione a folha principal da biblioteca no `angular.json` do app consumidor:
 
 ```json
 {
@@ -87,13 +135,19 @@ Adicione no `styles` do `angular.json` do app:
 }
 ```
 
-Com isso, os componentes passam a usar os tokens CSS `--justica-*` e o reset visual padrão da biblioteca.
+`justica-ui.css` importa:
 
-## Uso do Favicon
+- `tokens.css`
+- `reset.css`
+- estilos dos componentes e layout
+- Roboto
+- Font Awesome
 
-A biblioteca publica um favicon em `src/lib/assets/favicon.ico`, mas o navegador só aplica favicon quando a aplicação consumidora copia esse arquivo para o build e referencia o arquivo no `index.html`.
+Os tokens usam prefixo `--justica-*`.
 
-No `angular.json` do app consumidor, adicione o asset:
+## Favicon
+
+A biblioteca publica `src/lib/assets/favicon.ico`. Para usar no app consumidor:
 
 ```json
 {
@@ -108,22 +162,46 @@ No `angular.json` do app consumidor, adicione o asset:
 }
 ```
 
-No `src/index.html` do app consumidor, mantenha ou adicione:
+No `index.html`:
 
 ```html
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
 ```
 
-Observação: o favicon pode ficar em cache no navegador. Se a troca não aparecer imediatamente, limpe o cache ou teste em uma janela anônima.
+## Regras de Desenvolvimento
 
-## Desenvolvimento da Biblioteca
+- Components da lib devem usar selector `justica-*`.
+- Diretivas da lib devem usar prefixo `justica`.
+- Campos e parameter properties `private` devem comecar com `_`.
+- Exemplo: `private readonly _service: JusticaModalService`.
+- Metodos `private` nao usam `_`.
+- Use `readonly` para dependencias e campos privados nao reatribuidos.
+- Imports internos nao devem usar barrels de dominio como `../services` ou `./models`; importe o arquivo especifico.
+- Barrels publicos continuam permitidos em `public-api.ts`.
+- Use aspas simples e ponto e virgula.
+- Evite ciclos entre barrels e implementacoes. Dentro da lib, prefira imports diretos de arquivo.
+- Nao crie subpackages acidentais dentro de `src/lib`; entrypoints secundarios ficam na raiz da lib, ao lado de `src`.
 
-- Build de publicação: `npm run build:justica-ui`
-- Watch da biblioteca: `npm run watch:justica-ui`
-- Testes: `ng test justica-ui`
+## Preparacao para Angular 21+
 
-## Documentação Completa
+Enquanto a biblioteca estiver em Angular 11, mantenha `NgModule` e `forRoot` como contrato principal. Para facilitar a migração futura, novas configuracoes devem tambem expor provider functions. A funcao atual e:
 
-Para detalhes de workspace, demo, publicação (Verdaccio/Nexus), troubleshooting e convenções:
+```ts
+provideJusticaUi({
+  exibirMenu: true
+});
+```
 
-- `README.md` na raiz do repositório
+Em Angular 11 ela e usada internamente pelo `JusticaUiModule.forRoot`. Em uma aplicacao futura standalone, a mesma ideia podera ser reaproveitada no bootstrap da aplicacao.
+
+Nao use APIs exclusivas de Angular moderno, como `input()`, `output()`, signals ou control flow `@if/@for`, enquanto a versao do workspace permanecer em Angular 11.
+
+## Desenvolvimento
+
+```bash
+npm run build:justica-ui
+npm run watch:justica-ui
+npm run lint
+```
+
+O lint da biblioteca usa ESLint via `@angular-eslint/builder:lint`.

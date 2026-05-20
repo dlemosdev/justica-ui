@@ -1,163 +1,269 @@
-﻿# Justica UI Workspace
+# Justica UI Workspace
 
-Monorepo Angular 11 com foco na biblioteca `@justica/ui` e uma aplicação demo para validação visual e funcional dos componentes.
+Monorepo Angular 11 da biblioteca `@justica/ui`, com uma aplicação demo para validar visualmente componentes, layout, estilos globais e integrações com `@justica/core`.
 
-## Leitura Rápida
+## Leitura Rapida
 
-- README resumido da biblioteca (ideal para contexto de pacote/publicação): `projects/justica-ui/README.md`
-- README completo do workspace (este arquivo): instalação, desenvolvimento, publish e troubleshooting
+- Biblioteca publicada: `projects/justica-ui`
+- Aplicacao demo: `projects/justica-ui-demo`
+- README do pacote: `projects/justica-ui/README.md`
+- README do layout: `projects/justica-ui/src/lib/layout/README.md`
+- Artefato gerado para publicacao: `dist/justica-ui`
 
-## Visão Geral
+## Stack
 
-- Workspace: Angular CLI `11.1.2`
-- Biblioteca principal: `projects/justica-ui`
-- Aplicação demo: `projects/justica-ui-demo`
-- Empacotamento da biblioteca: `ng-packagr`
-- Registro local para testes de publish: Verdaccio (`http://localhost:4873`)
+- Angular CLI `11.1.2`
+- Angular `11.1.1`
+- TypeScript `4.1.2`
+- RxJS `6.6`
+- `ng-packagr` para empacotar a biblioteca
+- ESLint com `@angular-eslint` no lugar de TSLint
+- Prettier, Husky, lint-staged e commitlint para qualidade local
+- Verdaccio para publish local
 
-## Estrutura do Projeto
+## Estrutura
 
-- `projects/justica-ui`: código da biblioteca exportada como `@justica/ui`
-- `projects/justica-ui-demo`: app de demonstração e validação manual dos componentes
-- `dist/justica-ui`: artefato gerado para empacotamento/publicação
-- `scripts/start-dev.mjs`: fluxo de desenvolvimento integrado (watch da lib + subida da demo)
-- `.verdaccio/`: configuração local do Verdaccio
+- `projects/justica-ui`: codigo fonte da biblioteca `@justica/ui`
+- `projects/justica-ui-demo`: app Angular usado como vitrine e validacao manual
+- `projects/justica-ui/src/public-api.ts`: entrypoint publico agregado do pacote
+- `projects/justica-ui/components`: entrypoint `@justica/ui/components`
+- `projects/justica-ui/models`: entrypoint `@justica/ui/models`
+- `projects/justica-ui/layout`: entrypoint `@justica/ui/layout`
+- `projects/justica-ui/config`: entrypoint `@justica/ui/config`
+- `projects/justica-ui/services`: entrypoint `@justica/ui/services`
+- `projects/justica-ui/src/lib/components`: componentes reutilizaveis
+- `projects/justica-ui/src/lib/layout`: layout completo, header, sidebar, menu e services
+- `projects/justica-ui/src/lib/styles`: reset, tokens CSS e folha principal da biblioteca
+- `scripts/start-dev.mjs`: fluxo local com watch da lib e demo
+- `.verdaccio/`: configuracao local do registry Verdaccio
 
-## Requisitos
-
-- Node.js (recomendado manter versão compatível com Angular 11)
-- npm
-- Docker (apenas para publish local com Verdaccio)
-
-## Instalação
+## Instalacao
 
 ```bash
 npm install
 ```
 
-## Comandos Principais
-
-- Desenvolvimento da demo: `npm run start:demo`
-- Desenvolvimento integrado (watch lib + demo): `npm run start:dev`
-- Build geral do workspace: `npm run build`
-- Build da biblioteca (produção): `npm run build:justica-ui`
-- Watch da biblioteca: `npm run watch:justica-ui`
-- Testes: `npm run test`
-- Lint: `npm run lint`
-- Formatação: `npm run format`
-- Validação de formatação: `npm run format:check`
-
-## Publicação da Biblioteca
-
-### Build de publicação
-
-O script `build:justica-ui` executa:
+O projeto tambem funciona com Yarn 1 para comandos de desenvolvimento, por exemplo:
 
 ```bash
-ng build justica-ui --configuration production
+yarn lint
 ```
 
-Isso garante build compatível com o fluxo atual da biblioteca no projeto.
-
-### Publish local (Verdaccio)
-
-1. Subir o Verdaccio:
+## Comandos
 
 ```bash
-npm run verdaccio:up
+npm run start:demo
+npm run start:dev
+npm run build
+npm run build:justica-ui
+npm run watch:justica-ui
+npm run test
+npm run lint
+npm run format
+npm run format:check
 ```
 
-2. Publicar no registro local:
+`start:dev` e o fluxo recomendado para desenvolvimento diario, pois mantém a biblioteca em watch e sobe a demo.
 
-```bash
-npm run publish:local
+## Lint e Regras de Codigo
+
+O workspace foi migrado de TSLint para ESLint. Os alvos `lint` em `angular.json` usam:
+
+```json
+"builder": "@angular-eslint/builder:lint"
 ```
 
-3. Acompanhar logs (opcional):
+Projetos cobertos:
 
-```bash
-npm run verdaccio:logs
+- `justica-ui`: `projects/justica-ui/**/*.ts` e `projects/justica-ui/**/*.html`
+- `justica-ui-demo`: `projects/justica-ui-demo/**/*.ts` e `projects/justica-ui-demo/**/*.html`
+
+Regras principais:
+
+- Componentes da biblioteca usam selector com prefixo `justica` em kebab-case.
+- Componentes da demo usam selector com prefixo `app` em kebab-case.
+- Diretivas da biblioteca usam prefixo `justica` em camelCase.
+- Propriedades e parameter properties `private` devem usar underscore inicial.
+- Exemplo: `private readonly _modalService: JusticaModalService`.
+- Metodos `private` nao devem usar underscore.
+- `private readonly` deve ser preferido quando a dependencia/campo nao e reatribuido.
+- Strings usam aspas simples.
+- `console` so permite `warn` e `error`.
+- `any` gera warning; use tipos explicitos quando possivel.
+- `public-api.ts` pode exportar barrels publicos.
+- Imports internos da lib nao devem usar barrels de dominio como `../services`, `./models`, `../utils`; importe o arquivo especifico.
+
+Exemplo recomendado:
+
+```ts
+import {JusticaSidebarEstadoService} from '../../services/justica-sidebar-estado.service';
+
+constructor(private readonly _sidebarEstadoService: JusticaSidebarEstadoService) {}
 ```
 
-4. Derrubar o Verdaccio (quando finalizar):
+## Arquitetura da Biblioteca
 
-```bash
-npm run verdaccio:down
+A biblioteca possui um entrypoint agregado em `projects/justica-ui/src/public-api.ts` e entrypoints secundarios deliberados na raiz da lib. Cada entrypoint secundario deve ter `ng-package.json` e `src/public-api.ts`, seguindo o modelo suportado pelo `ng-packagr`. Evite criar `package.json`, `tsconfig.*`, `karma.conf.js` ou `public-api.ts` aninhados dentro de `src/lib` como se fossem bibliotecas independentes.
+
+Diretrizes para manter compatibilidade com Angular 11 e facilitar Angular 21+:
+
+- Mantenha `NgModule` como API principal enquanto o projeto estiver em Angular 11.
+- Exponha provider functions junto com o `forRoot`, como `provideJusticaUi`, para facilitar migração futura para standalone/bootstrap providers.
+- Toda API consumida fora da lib deve sair por `src/public-api.ts`.
+- APIs por dominio tambem devem sair pelo entrypoint secundario correspondente.
+- Codigo interno deve importar arquivos especificos, nao barrels agregadores.
+- Services singleton devem usar `providedIn: 'root'` quando fizer sentido.
+- Componentes devem usar `ChangeDetectionStrategy.OnPush`.
+- Estado derivado deve ficar em getters puros ou streams; em Angular 21+, migrar gradualmente para signals/computed.
+- Evite ciclos entre barrels e implementacoes; barrels sao para fronteira publica, nao para uso interno.
+- Preserve `strictMetadataEmit` e declarations no build da lib.
+- Nao publique artefatos em `dist`; gere-os via build.
+
+### Caminho Futuro para Angular 21+
+
+Quando a stack for atualizada, a ordem recomendada e:
+
+1. Migrar Angular major a major usando `ng update`.
+2. Atualizar `ng-packagr` e o builder de library para o formato atual.
+3. Ativar partial compilation quando a versao suportar:
+
+```json
+{
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  }
+}
 ```
 
-Observação: o `README.md` em `projects/justica-ui` foi simplificado para exibição em contexto de pacote; use este README raiz para detalhes operacionais do workspace.
+4. Adicionar APIs standalone sem remover imediatamente os modulos.
+5. Evoluir consumers para `provideJusticaUi(...)` e depois reduzir dependencia de `forRoot`.
+6. Migrar entradas/saidas novas para `input()`/`output()` apenas depois da atualizacao de Angular.
+7. Migrar estado local para signals mantendo compatibilidade visual e de contrato publico.
 
-### Publish snapshot/release
+## Implementacoes Atuais
 
-- Snapshot: `npm run publish:snapshot`
-- Release: `npm run publish:release`
+Componentes publicados:
+
+- `JusticaButtonComponent`: botao com severidade, variante, tamanho, icone, loading, estado disabled, modo fluid e rounded.
+- `JusticaModalComponent` e `JusticaModalService`: modal projetado ou dinamico via service.
+- `JusticaSidebarItemComponent`: item utilitario para recolher a sidebar em navegacoes internas.
+- `JusticaLayoutComponent`: composicao principal com header, sidebar, menu e area de conteudo.
+- `provideJusticaUi`: API de providers preparada para o modelo moderno, reutilizada pelo `JusticaUiModule.forRoot`.
+
+Layout:
+
+- Header com nome do projeto, versao, data/hora de Brasilia e acao de logout.
+- Sidebar recolhivel com estado compartilhado por service.
+- Menu carregado pelo `GestaoService`, com filtro de itens ativos/visiveis e suporte a submenus.
+- Slots via `ng-content` para acoes no cabecalho e itens adicionais na sidebar.
+
+Estilos:
+
+- `justica-ui.css` centraliza os imports de reset, tokens e componentes.
+- Tokens CSS seguem o prefixo `--justica-*`.
+- Font Awesome e Roboto sao carregados pela folha principal da biblioteca.
 
 ## Uso da Biblioteca
-
-### API pública
-
-Entrypoint público da lib: `projects/justica-ui/src/public-api.ts`
-
-Exporta:
-
-- `JusticaUiModule`
-- Componentes em `lib/components`
-- Recursos de layout
-- Services em `lib/services`
-- Models em `lib/models`
-
-### Exemplo de import
 
 ```ts
 import {JusticaUiModule} from '@justica/ui';
 ```
 
-### Configuração `forRoot`
+Imports por dominio:
+
+```ts
+import {JusticaButtonModule, JusticaModalService} from '@justica/ui/components';
+import {JusticaUsuario} from '@justica/ui/models';
+import {JusticaLayoutModule, TJusticaMenu} from '@justica/ui/layout';
+import {provideJusticaUi} from '@justica/ui/config';
+import {JusticaSidebarEstadoService} from '@justica/ui/services';
+```
+
+Configuracao:
 
 ```ts
 JusticaUiModule.forRoot({
-  enviroment: {
-    production: false,
-    apiUrl: 'http://localhost:3000'
-  },
   exibirMenu: true
 });
 ```
 
-Observação: a interface atual usa a chave `enviroment` (grafia existente no projeto).
+Uso do layout:
 
-### Favicon
+```html
+<justica-layout nomeProjeto="Portal STJ" versao="1.0.0">
+  <div justica-cabecalho-acoes>
+    <!-- acoes do header -->
+  </div>
 
-A biblioteca inclui `src/lib/assets/favicon.ico`. Apps consumidores precisam copiar esse asset no próprio `angular.json` e manter a referência no `index.html`; veja a seção "Uso do Favicon" em `projects/justica-ui/README.md`.
+  <div justica-sidebar-itens>
+    <!-- itens extras da sidebar -->
+  </div>
 
-## Registro e `.npmrc`
+  <router-outlet></router-outlet>
+</justica-layout>
+```
 
-O workspace possui:
+## Estilos e Assets no App Consumidor
 
-- `@justica:registry=http://localhost:4873`
-- `registry=https://registry.npmjs.org/`
+Adicione os estilos da biblioteca no `angular.json` do app consumidor:
 
-Assim, pacotes `@justica/*` podem ser resolvidos/publicados localmente no Verdaccio quando ele estiver ativo.
+```json
+{
+  "styles": [
+    "src/styles.css",
+    "node_modules/@justica/ui/src/lib/styles/justica-ui.css"
+  ]
+}
+```
 
-## Qualidade e Convenções
+Para usar o favicon publicado pela biblioteca:
 
-- `husky` configurado com:
-  - `pre-commit`: executa `lint-staged`
-  - `commit-msg`: executa `commitlint`
-- `prettier` para formatação
-- `tslint` presente no workspace atual (stack Angular 11)
+```json
+{
+  "assets": [
+    {
+      "glob": "favicon.ico",
+      "input": "node_modules/@justica/ui/src/lib/assets",
+      "output": "/"
+    },
+    "src/assets"
+  ]
+}
+```
+
+No `index.html`:
+
+```html
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+```
+
+## Publicacao
+
+Build de producao da biblioteca:
+
+```bash
+npm run build:justica-ui
+```
+
+Publish local com Verdaccio:
+
+```bash
+npm run verdaccio:up
+npm run publish:local
+npm run verdaccio:logs
+npm run verdaccio:down
+```
+
+Publish remoto:
+
+```bash
+npm run publish:snapshot
+npm run publish:release
+```
 
 ## Troubleshooting
 
-- `ECONNREFUSED 127.0.0.1:4873` no `publish:local`
-  - O Verdaccio não está ativo. Rode `npm run verdaccio:up`.
-
-- Aviso `npm update check failed` com erro de permissão/cache
-  - Aviso comum em ambientes Windows com npm antigo; não bloqueia o build da lib.
-
-## Referências Rápidas
-
-- Biblioteca: `projects/justica-ui`
-- Demo: `projects/justica-ui-demo`
-- Artefato de publish: `dist/justica-ui`
-- README simplificado da biblioteca: `projects/justica-ui/README.md`
+- `Unable to find TSLint`: algum alvo ainda esta usando `@angular-devkit/build-angular:tslint`; troque para `@angular-eslint/builder:lint`.
+- `Unable to find ESLint`: instale `eslint`, `@typescript-eslint/parser` e `@typescript-eslint/eslint-plugin` compativeis com a linha do `@angular-eslint`.
+- `ECONNREFUSED 127.0.0.1:4873`: o Verdaccio nao esta ativo; rode `npm run verdaccio:up`.
+- `npm update check failed` ou `EPERM` em cache/log do npm no Windows: normalmente e permissao/cache do npm global. Com Yarn, `yarn lint` executa o lint sem esse erro de limpeza de cache.

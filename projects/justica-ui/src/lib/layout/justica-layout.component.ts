@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Inject, Input, ViewEncapsulation} from '@angular/core';
-import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../config/justica-ui.config';
 import {JusticaUsuarioService} from '@justica/core/services';
+
+import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../configs/justica-ui.config';
 
 @Component({
   selector: 'justica-layout[nomeProjeto][versao]',

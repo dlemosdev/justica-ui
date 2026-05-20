@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {JusticaSidebarEstadoService} from '../../services';
+import {JusticaSidebarEstadoService} from '../../../services/justica-sidebar-estado.service';
 import {JUSTICA_LOGO_STJ_DATA_URL} from '../../constants/justica-assets.const';
-import {JusticaModalService} from '../../../components';
+import {JusticaModalService} from '../../../components/justica-modal/justica-modal.service';
 import {JusticaLogoutComponent} from './justica-logout/justica-logout.component';
 import {JusticaUsuarioService} from '@justica/core/services';
 

@@ -4,7 +4,8 @@ import {JusticaHeaderComponent} from './components/justica-header/justica-header
 import {JusticaMenuComponent} from './components/justica-menu/justica-menu.component';
 import {JusticaMenuItemComponent} from './components/justica-menu/justica-menu-item/justica-menu-item.component';
 import {JusticaSidebarComponent} from './components/justica-sidebar/justica-sidebar.component';
-import {JusticaButtonModule, JusticaModalModule} from '../components';
+import {JusticaButtonModule} from '../components/justica-button/justica-button.module';
+import {JusticaModalModule} from '../components/justica-modal/justica-modal.module';
 import {CommonModule} from '@angular/common';
 import {JusticaLogoutComponent} from './components/justica-header/justica-logout/justica-logout.component';
 import {HttpClientModule} from '@angular/common/http';
