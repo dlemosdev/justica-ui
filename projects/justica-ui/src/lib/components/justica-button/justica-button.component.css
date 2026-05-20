@@ -1,0 +1,144 @@
+:host {
+  display: inline-block;
+}
+
+.justica-button__button {
+  display: inline-flex;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--justica-size-4);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: var(--justica-size-3);
+  font-size: var(--justica-size-8);
+  font-weight: var(--justica-font-weight-medium);
+  font-family: inherit;
+  outline-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    outline-color 0.2s ease, box-shadow 0.2s ease;
+  padding: var(--justica-size-4) var(--justica-size-6);
+}
+
+.justica-button__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.justica-button--size-small {
+  font-size: var(--justica-size-5);
+  padding: var(--justica-size-1) var(--justica-size-3);
+}
+
+.justica-button--size-normal {
+  font-size: var(--justica-size-6);
+  padding: var(--justica-size-2) var(--justica-size-4);
+}
+
+.justica-button--size-large {
+  font-size: var(--justica-size-8);
+  padding: var(--justica-size-4) var(--justica-size-6);
+}
+
+.justica-button--icon-only {
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  background: transparent;
+}
+
+.justica-button--size-small.justica-button--icon-only {
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+}
+
+.justica-button--size-large.justica-button--icon-only {
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+}
+
+.justica-button--icon-top,
+.justica-button--icon-bottom {
+  flex-direction: column;
+}
+
+.justica-button--icon-right {
+  flex-direction: row-reverse;
+}
+
+.justica-button--icon-bottom {
+  flex-direction: column-reverse;
+}
+
+.justica-button--rounded {
+  border-radius: 999px;
+}
+
+.justica-button--fluid {
+  width: 100%;
+}
+
+.justica-button--severity-primary {
+  --btn-color: var(--justica-color-primary);
+}
+.justica-button--severity-secondary {
+  --btn-color: var(--justica-color-secondary);
+}
+.justica-button--severity-success {
+  --btn-color: var(--justica-color-success);
+}
+.justica-button--severity-info {
+  --btn-color: var(--justica-color-info);
+}
+.justica-button--severity-warn {
+  --btn-color: var(--justica-color-warning);
+}
+.justica-button--severity-help {
+  --btn-color: var(--justica-purple-500);
+}
+.justica-button--severity-danger {
+  --btn-color: var(--justica-color-danger);
+}
+.justica-button--severity-contrast {
+  --btn-color: var(--justica-color-text);
+}
+.justica-button--severity-transparent {
+  --btn-color: transparent;
+}
+
+.justica-button--variant-solid {
+  background: var(--btn-color);
+  border-color: var(--btn-color);
+  color: var(--justica-color-background);
+}
+
+.justica-button--variant-solid:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.justica-button--variant-outlined {
+  background: transparent;
+  border-color: var(--btn-color);
+  color: var(--btn-color);
+}
+
+.justica-button--variant-outlined:hover:not(:disabled) {
+  background: var(--justica-gray-100);
+}
+
+.justica-button--variant-text,
+.justica-button--variant-link {
+  background: transparent;
+  border-color: transparent;
+  color: var(--btn-color);
+}
+
+.justica-button--variant-link {
+  text-decoration: underline;
+  padding-inline: 0;
+}

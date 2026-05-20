@@ -1,0 +1,17 @@
+{
+  "/ws": {
+    "target": "https://wsjus-dev.web.stj.jus.br/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api/gestao": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api": {
+    "target": "https://justica-dev.web.stj.jus.br",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,5 @@
+<nav class="justica-menu-topo">
+  <ul class="justica-menu-topo__lista">
+    <justica-menu-item *ngFor="let item of (menu$ | async) || []" [itemMenu]="item"></justica-menu-item>
+  </ul>
+</nav>

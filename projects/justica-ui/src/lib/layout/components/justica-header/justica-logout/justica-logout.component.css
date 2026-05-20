@@ -1,0 +1,69 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 11.25rem;
+}
+
+.justica_logout__janela {
+  width: min(25rem, 90vw);
+  min-height: 15rem;
+  background: var(--justica-color-background);
+  border-radius: var(--justica-size-2);
+  box-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.35);
+  padding: var(--justica-size-16) var(--justica-size-13) var(--justica-size-10);
+  display: flex;
+  flex-direction: column;
+}
+
+.justica_logout__titulo {
+  margin: 0;
+  font-size: var(--justica-size-12);
+  font-weight: var(--justica-font-weight-bold);
+  color: var(--justica-color-text-primary);
+}
+
+.justica_logout__mensagem {
+  margin: var(--justica-size-8) 0 0;
+  font-size: var(--justica-size-7);
+  color: var(--justica-color-text-primary);
+}
+
+.justica_logout__acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--justica-size-6);
+}
+
+.justica_logout__botao {
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 0;
+  border-radius: 50%;
+  color: var(--justica-color-background);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--justica-size-8);
+}
+
+.justica_logout__botao--confirmar {
+  background: var(--justica-color-success);
+}
+
+.justica_logout__botao--confirmar:hover {
+  background: var(--justica-green-600);
+}
+
+.justica_logout__botao--cancelar {
+  background: var(--justica-color-danger);
+}
+
+.justica_logout__botao--cancelar:hover {
+  background: var(--justica-red-600);
+}
+
+.justica_logout__acoes-customizadas {
+  margin-top: var(--justica-size-4);
+}

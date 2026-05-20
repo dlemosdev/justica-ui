@@ -1,0 +1,17 @@
+﻿<button
+  [attr.type]="type"
+  [disabled]="disabled || loading"
+  [ngClass]="classesBotao"
+  (click)="executar($event)"
+>
+  <ng-container *ngIf="iconPos === 'left' || iconPos === 'top'">
+    <i *ngIf="exibirIcone" [class]="iconeAtual" aria-hidden="true"></i>
+  </ng-container>
+
+  <span *ngIf="label" class="justica-button__label">{{ label }}</span>
+  <ng-content></ng-content>
+
+  <ng-container *ngIf="iconPos === 'right' || iconPos === 'bottom'">
+    <i *ngIf="exibirIcone" [class]="iconeAtual" aria-hidden="true"></i>
+  </ng-container>
+</button>

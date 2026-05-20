@@ -1,0 +1,29 @@
+.justica-aplicacao {
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--justica-gray-100);
+}
+
+.justica-conteiner {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.justica-principal {
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  background: var(--justica-gray-100);
+  overflow: auto;
+}
+
+.justica-principal__conteudo {
+  min-height: 100%;
+  padding: var(--justica-size-4);
+}

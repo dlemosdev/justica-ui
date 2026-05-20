@@ -1,0 +1,54 @@
+﻿.justica-modal__fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.justica-modal__janela {
+  width: min(25rem, 90vw);
+  min-height: 15rem;
+  background: var(--justica-color-background);
+  border-radius: var(--justica-size-2);
+  box-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.35);
+  padding: var(--justica-size-11) var(--justica-size-13) var(--justica-size-10);
+  display: flex;
+  flex-direction: column;
+}
+
+.justica-modal__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--justica-size-6);
+}
+
+.justica-modal__titulo {
+  margin: 0;
+  font-size: var(--justica-size-12);
+  font-weight: var(--justica-font-weight-bold);
+  color: var(--justica-color-text-primary);
+}
+
+.justica-modal__fechar {
+  border: 0;
+  background: transparent;
+  color: var(--justica-color-text-secondary);
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--justica-size-2);
+  cursor: pointer;
+  font-size: var(--justica-size-11);
+  line-height: 1;
+}
+
+.justica-modal__fechar:hover {
+  background: var(--justica-gray-200);
+}
+
+.justica-modal__conteudo {
+  margin-top: var(--justica-size-6);
+}

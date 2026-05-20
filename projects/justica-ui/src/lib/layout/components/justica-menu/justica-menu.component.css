@@ -1,0 +1,28 @@
+.justica-menu-topo {
+  min-height: 2rem;
+  display: flex;
+  align-items: flex-start;
+  background: var(--justica-color-background);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.08);
+  z-index: 10;
+  overflow: visible;
+}
+
+.justica-menu-topo__lista {
+  width: 100%;
+  min-height: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin: 0;
+  padding: 0 var(--justica-size-2);
+  list-style: none;
+}
+
+@media (max-width: 64rem) {
+  .justica-menu-topo__link {
+    padding: 0 var(--justica-size-1);
+  }
+}

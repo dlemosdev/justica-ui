@@ -1,0 +1,47 @@
+﻿<header class="justica-cabecalho">
+  <div class="justica-cabecalho__esquerda">
+    <div class="justica-cabecalho__area-logo">
+      <img
+        width="160"
+        height="30"
+        [src]="logoStjDataUrl"
+        alt="STJ Superior Tribunal de Justica"
+      />
+
+      <button
+        class="justica-cabecalho__botao-menu"
+        type="button"
+        [class.aberto]="!sidebarRecolhida"
+        (click)="aoAlternarLateral()"
+        [attr.aria-expanded]="!sidebarRecolhida"
+        aria-label="Abrir ou fechar lateral"
+        [disabled]="!usuarioLogado"
+      >
+        <i class="fas fa-angle-left" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="justica-cabecalho__marca">
+      <span class="justica-cabecalho__titulo">Justiça - {{ nomeProjeto }}</span>
+      <small class="justica-cabecalho__versao">{{ versao }}</small>
+    </div>
+  </div>
+
+  <div class="justica-cabecalho__direita">
+    <span class="justica-cabecalho__datahora">Em Brasilia: {{ dataHoraBrasilia }}</span>
+
+    <div class="justica-cabecalho__acoes-customizadas" *ngIf="usuarioLogado">
+      <ng-content></ng-content>
+    </div>
+
+    <justica-button severity="transparent" aria-label="Notificações" size="large" [disabled]="!usuarioLogado">
+      <i class="fas fa-bell" aria-hidden="true"></i>
+    </justica-button>
+    <justica-button severity="transparent" aria-label="Alertas" size="large" [disabled]="!usuarioLogado">
+      <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+    </justica-button>
+    <justica-button severity="transparent" aria-label="Sair" (aoClicar)="abrirModalLogout()" size="large">
+      <i class="fas fa-power-off" aria-hidden="true"></i>
+    </justica-button>
+  </div>
+</header>

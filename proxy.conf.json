@@ -1,0 +1,12 @@
+{
+  "/ws": {
+    "target": "https://wsjus-dev.web.stj.jus.br/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api": {
+    "target": "https://justica-dev.web.stj.jus.br",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

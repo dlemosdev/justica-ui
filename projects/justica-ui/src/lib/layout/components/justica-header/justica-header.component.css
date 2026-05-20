@@ -1,0 +1,126 @@
+.justica-cabecalho {
+  height: 3.5rem;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  background: var(--justica-blue-700);
+  color: var(--justica-color-background);
+  box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.25);
+  z-index: 20;
+  font-family: var(--justica-font-family), sans-serif;
+}
+
+.justica-cabecalho__esquerda,
+.justica-cabecalho__direita {
+  display: flex;
+  align-items: center;
+  gap: var(--justica-size-1);
+}
+
+.justica-cabecalho__esquerda {
+  gap: 0;
+  height: 3.5rem;
+  min-height: 3.5rem;
+  min-width: 0;
+}
+
+.justica-cabecalho__direita {
+  padding-right: var(--justica-size-4);
+}
+
+.justica-cabecalho__area-logo {
+  width: 238px;
+  min-width: 238px;
+  height: 100%;
+  padding: 0 var(--justica-size-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--justica-color-primary);
+  position: relative;
+}
+
+.justica-cabecalho__marca {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--justica-size-8);
+  padding: 0 var(--justica-size-8) 0 var(--justica-size-14);
+  white-space: nowrap;
+}
+
+.justica-cabecalho__botao-menu {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  border-radius: 50%;
+  color: var(--justica-color-background);
+  background: var(--justica-blue-600);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: -1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 160ms ease-in-out, background 160ms ease-in-out;
+  font-size: var(--justica-size-7);
+}
+
+.justica-cabecalho__botao-menu.aberto {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+.justica-cabecalho__botao-menu:hover {
+  background: var(--justica-blue-400);
+}
+
+.justica-cabecalho__titulo {
+  font-size: var(--justica-size-12);
+  font-weight: var(--justica-font-weight-regular);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.justica-cabecalho__versao {
+  font-size: var(--justica-size-5);
+  font-weight: var(--justica-font-weight-medium);
+  letter-spacing: 0.02em;
+  opacity: 0.95;
+  margin-top: var(--justica-size-5);
+}
+
+.justica-cabecalho__datahora {
+  font-size: var(--justica-size-6);
+  font-weight: var(--justica-font-weight-medium);
+  white-space: nowrap;
+}
+
+.justica-cabecalho__acoes-customizadas {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--justica-size-3);
+}
+
+@media (max-width: 64rem) {
+  .justica-cabecalho__datahora {
+    display: none;
+  }
+}
+
+@media (max-width: 48rem) {
+  .justica-cabecalho__titulo {
+    font-size: var(--justica-size-11);
+  }
+
+  .justica-cabecalho__versao {
+    display: none;
+  }
+
+  .justica-cabecalho__area-logo {
+    width: 12rem;
+    min-width: 12rem;
+  }
+}

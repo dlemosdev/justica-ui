@@ -1,0 +1,16 @@
+<aside class="justica-sidebar" [class.recolhido]="lateralRecolhida">
+  <div class="justica-sidebar__conteudo">
+    <section class="justica-sidebar__secao" [style.background-image]="imagemFundoSecao">
+      <div class="justica-sidebar__dados">
+        <div class="justica-sidebar__usuario">{{ nomeUsuario }}</div>
+        <div class="justica-sidebar__local">
+          {{ localUsuario }}
+        </div>
+      </div>
+      <a class="justica-sidebar__link" href="#">Trocar Local</a>
+    </section>
+    <section class="justica-sidebar__itens">
+      <ng-content></ng-content>
+    </section>
+  </div>
+</aside>

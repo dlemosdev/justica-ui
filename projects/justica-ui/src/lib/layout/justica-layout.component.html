@@ -1,0 +1,20 @@
+<div class="justica-aplicacao">
+  <justica-header  [nomeProjeto]="nomeProjeto" [versao]="versao">
+    <ng-content select="[justica-cabecalho-acoes]"></ng-content>
+  </justica-header>
+
+  <justica-menu *ngIf="usuarioLogado && exibirMenu"></justica-menu>
+
+  <div class="justica-conteiner">
+    <justica-sidebar *ngIf="usuarioLogado">
+      <ng-content select="[justica-sidebar-itens]"></ng-content>
+    </justica-sidebar>
+    <main class="justica-principal">
+      <div class="justica-principal__conteudo">
+        <ng-content></ng-content>
+      </div>
+    </main>
+  </div>
+  <justica-modal></justica-modal>
+</div>
+

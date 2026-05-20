@@ -1,0 +1,61 @@
+<li
+  class="justica-menu-topo__item"
+  [class.justica-menu-topo__item--tem-submenu]="possuiSubmenu"
+  [class.aberto]="submenuAberto"
+>
+  <div class="justica-menu-topo__conteudo">
+    <a class="justica-menu-topo__link" [href]="href" (click)="alternarSubmenu($event)">
+      <i *ngIf="icone as iconeTopo" class="justica-menu-topo__icone" [class]="iconeTopo"></i>
+      <span class="justica-menu-topo__texto">{{ descricao }}</span>
+      <i
+        *ngIf="possuiSubmenu"
+        class="justica-menu-topo__seta fas fa-chevron-down"
+        aria-hidden="true"
+      ></i>
+    </a>
+  </div>
+
+  <ul
+    *ngIf="possuiSubmenu"
+    class="justica-submenu justica-submenu--nivel-1"
+    [class.aberto]="submenuAberto"
+  >
+    <li
+      *ngFor="let item of itensSubmenu; let i = index"
+      class="justica-submenu__item"
+      [class.justica-submenu__item--tem-filhos]="item.temFilhos"
+      [class.aberto]="indiceFilhoAberto === i"
+    >
+      <a
+        class="justica-submenu__link"
+        [href]="item.hrefResolvido"
+        (click)="item.temFilhos ? alternarSubmenuFilho($event, i) : fecharTudo()"
+      >
+        <i *ngIf="item.icon as iconeSub" class="justica-submenu__icone" [class]="iconeSub"></i>
+        <span>{{ item.label }}</span>
+        <i
+          *ngIf="item.temFilhos"
+          class="justica-submenu__seta fas fa-chevron-right"
+          aria-hidden="true"
+        ></i>
+      </a>
+
+      <ul
+        *ngIf="item.temFilhos"
+        class="justica-submenu justica-submenu--nivel-2"
+        [class.aberto]="indiceFilhoAberto === i"
+      >
+        <li *ngFor="let child of item.itensFilhos" class="justica-submenu__item">
+          <a class="justica-submenu__link" [href]="child.hrefResolvido" (click)="fecharTudo()">
+            <i
+              *ngIf="child.icon as iconeFilho"
+              class="justica-submenu__icone"
+              [class]="iconeFilho"
+            ></i>
+            <span>{{ child.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>

@@ -1,0 +1,24 @@
+<section>
+  <div>
+    <h2 class="justica_logout__titulo">Atenção!</h2>
+    <p class="justica_logout__mensagem">Deseja realmente sair do Sistema Justica?</p>
+  </div>
+  <div class="justica_logout__acoes">
+    <button
+      class="justica_logout__botao justica_logout__botao--confirmar"
+      type="button"
+      aria-label="Confirmar"
+      (click)="confirmar()"
+    >
+      <i class="fas fa-check" aria-hidden="true"></i>
+    </button>
+    <button
+      class="justica_logout__botao justica_logout__botao--cancelar"
+      type="button"
+      aria-label="Cancelar"
+      (click)="cancelar()"
+    >
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+</section>
