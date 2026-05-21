@@ -182,6 +182,18 @@ No `index.html`:
 - Evite ciclos entre barrels e implementacoes. Dentro da lib, prefira imports diretos de arquivo.
 - Nao crie subpackages acidentais dentro de `src/lib`; entrypoints secundarios ficam na raiz da lib, ao lado de `src`.
 
+### IntelliJ/WebStorm
+
+Como a lib evita barrels em imports internos, o IntelliJ/WebStorm pode sugerir `Import can be shortened` quando existir um `index.ts` no caminho.
+
+Para remover esse alerta no projeto:
+
+1. Abra `Settings`.
+2. Acesse `Editor > Inspections`.
+3. Pesquise por `Import can be shortened`.
+4. Em `JavaScript and TypeScript > General`, desmarque `Import can be shortened`.
+5. Mantenha o profile como `Project Default` para aplicar a configuracao ao projeto.
+
 ## Preparacao para Angular 21+
 
 Enquanto a biblioteca estiver em Angular 11, mantenha `NgModule` e `forRoot` como contrato principal. Para facilitar a migração futura, novas configuracoes devem tambem expor provider functions. A funcao atual e:
