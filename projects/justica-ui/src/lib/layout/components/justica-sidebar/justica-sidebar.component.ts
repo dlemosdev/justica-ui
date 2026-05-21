@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {JusticaSidebarEstadoService} from '../../../services/justica-sidebar-estado.service';
+import {JusticaSidebarEstadoService} from './justica-sidebar-estado.service';
 import {JUSTICA_PROFILE_BG_DATA_URL} from '../../constants/justica-assets.const';
 import {JusticaUsuarioService} from '@justica/core/services';
 import {StringUtils} from '@justica/core/utils';

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, HostListener} from '@angular/core';
-import {JusticaSidebarEstadoService} from '../../services';
+import {JusticaSidebarEstadoService} from '../../layout/components/justica-sidebar/justica-sidebar-estado.service';
 
 @Component({
   selector: 'justica-sidebar-item',

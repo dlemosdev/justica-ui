@@ -17,7 +17,7 @@ const ESTADO_INICIAL: JusticaModalEstado = {
   fecharAoClicarFora: true
 };
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class JusticaModalService {
   private readonly _estadoSubject = new BehaviorSubject<JusticaModalEstado>(ESTADO_INICIAL);
   readonly estado$ = this._estadoSubject.asObservable();
