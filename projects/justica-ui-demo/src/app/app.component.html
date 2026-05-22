@@ -1,9 +1,14 @@
-﻿<justica-layout nomeProjeto="Layout" versao="1.0.0">
+<justica-layout [nomeProjeto]="nomeProjeto" [versao]="version">
   <!--Exemplo de como aplicar botoes customizados no cabecalho-->
   <justica-button size="large" justica-cabecalho-acoes severity="transparent" aria-label="Ajuda">
     <i class="fas fa-question-circle" aria-hidden="true"></i>
   </justica-button>
   <!--Exemplo de como aplicar itens customizados no na sidebar-->
+  <justica-sidebar-item justica-sidebar-itens>
+    <a routerLink="/layout" routerLinkActive="active">
+      <i class="fas fa-columns"></i><span>Layout</span>
+    </a>
+  </justica-sidebar-item>
   <justica-sidebar-item justica-sidebar-itens>
     <a routerLink="/modal" routerLinkActive="active">
       <i class="fas fa-file-alt"></i><span>Modal</span>
@@ -12,6 +17,11 @@
   <justica-sidebar-item justica-sidebar-itens>
     <a routerLink="/button" routerLinkActive="active">
       <i class="fas fa-file-alt"></i><span>Button</span>
+    </a>
+  </justica-sidebar-item>
+  <justica-sidebar-item justica-sidebar-itens>
+    <a routerLink="/dialog" routerLinkActive="active">
+      <i class="fas fa-comments"></i><span>Dialog</span>
     </a>
   </justica-sidebar-item>
   <router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 {
   "name": "justica-ui-workspace",
-  "version": "1.0.0",
+  "version": "11.0.0",
   "scripts": {
     "ng": "ng",
     "prepare": "husky install",
@@ -37,7 +37,7 @@
     "@angular/platform-browser-dynamic": "~11.1.1",
     "@angular/router": "~11.1.1",
     "@fortawesome/fontawesome-free": "^6.5.2",
-    "@justica/core": "^11.0.2",
+    "@justica/core": "^11.0.18",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

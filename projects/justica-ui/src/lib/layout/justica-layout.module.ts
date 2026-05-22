@@ -1,26 +1,28 @@
 import {NgModule} from '@angular/core';
 import {JusticaLayoutComponent} from './justica-layout.component';
-import {JusticaHeaderComponent} from './components/justica-header/justica-header.component';
-import {JusticaMenuComponent} from './components/justica-menu/justica-menu.component';
-import {JusticaMenuItemComponent} from './components/justica-menu/justica-menu-item/justica-menu-item.component';
-import {JusticaSidebarComponent} from './components/justica-sidebar/justica-sidebar.component';
 import {JusticaButtonModule} from '../components/justica-button/justica-button.module';
 import {JusticaModalModule} from '../components/justica-modal/justica-modal.module';
 import {CommonModule} from '@angular/common';
-import {JusticaLogoutComponent} from './components/justica-header/justica-logout/justica-logout.component';
 import {HttpClientModule} from '@angular/common/http';
+import {JusticaMenuModule} from './components/justica-menu/justica-menu.module';
+import {JusticaHeaderModule} from './components/justica-header/justica-header.module';
+import {JusticaSidebarModule} from './components/justica-sidebar/justica-sidebar.module';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, JusticaButtonModule, JusticaModalModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    // Modulos internos
+    JusticaHeaderModule,
+    JusticaMenuModule,
+    JusticaSidebarModule,
+    // Modulos externos
+    JusticaModalModule,
+  ],
   declarations: [
     JusticaLayoutComponent,
-
-    JusticaHeaderComponent,
-    JusticaLogoutComponent,
-    JusticaMenuComponent,
-    JusticaMenuItemComponent,
-    JusticaSidebarComponent
   ],
   exports: [JusticaLayoutComponent]
 })
-export class JusticaLayoutModule {}
+export class JusticaLayoutModule {
+}

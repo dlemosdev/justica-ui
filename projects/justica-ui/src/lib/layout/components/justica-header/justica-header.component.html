@@ -26,7 +26,14 @@
       <small class="justica-cabecalho__versao">{{ versao }}</small>
     </div>
   </div>
-
+  <div class="justica-cabecalho__meio">
+    <span
+      class="justica-cabecalho__sessao"
+      *ngIf="exibirTempoSessao && usuarioLogado && (tempoRestanteMonitoramentoUsuario$ | async) as tempoRestante"
+    >
+      Sessão expira em: {{ tempoRestante }}
+    </span>
+  </div>
   <div class="justica-cabecalho__direita">
     <span class="justica-cabecalho__datahora">Em Brasilia: {{ dataHoraBrasilia }}</span>
 

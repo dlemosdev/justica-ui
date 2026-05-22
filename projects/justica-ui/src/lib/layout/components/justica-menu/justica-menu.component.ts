@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MenuService} from './menu.service';
+import {JusticaMenuService} from './justica-menu.service';
 import {Observable} from 'rxjs';
 import {JusticaMenu} from '../../../models/justica-menu.model';
 
@@ -9,7 +9,7 @@ import {JusticaMenu} from '../../../models/justica-menu.model';
   styleUrls: ['./justica-menu.component.css']
 })
 export class JusticaMenuComponent {
-  constructor(private readonly _gestaoService: MenuService) {}
+  constructor(private readonly _gestaoService: JusticaMenuService) {}
 
   get menu$(): Observable<JusticaMenu[]> {
     return this._gestaoService.menu$;

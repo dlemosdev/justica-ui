@@ -30,6 +30,21 @@
   padding-right: var(--justica-size-4);
 }
 
+.justica-cabecalho__meio {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--justica-size-4);
+}
+
+.justica-cabecalho__sessao {
+  font-size: var(--justica-size-6);
+  font-weight: var(--justica-font-weight-medium);
+  white-space: nowrap;
+}
+
 .justica-cabecalho__area-logo {
   width: 238px;
   min-width: 238px;
@@ -105,7 +120,8 @@
 }
 
 @media (max-width: 64rem) {
-  .justica-cabecalho__datahora {
+  .justica-cabecalho__datahora,
+  .justica-cabecalho__sessao {
     display: none;
   }
 }

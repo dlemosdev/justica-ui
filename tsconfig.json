@@ -8,15 +8,15 @@
     "declaration": false,
     "downlevelIteration": true,
     "paths": {
-      "@justica/ui": ["dist/justica-ui", "dist/justica-ui/@justica/ui"],
-      "justica-ui": ["dist/justica-ui/justica-ui", "dist/justica-ui"]
+      "@justica/ui": ["dist/justica-ui", "dist/justica-ui/@justica/ui"]
     },
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom"],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false

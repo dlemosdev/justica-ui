@@ -14,8 +14,8 @@ interface ExemploButton {
       <header class="doc__header">
         <h2>Justica Button</h2>
         <p>
-          Componente de botão com suporte a severidade, variante, tamanho, ícones, loading e modo
-          icon-only.
+          Componente de botão com suporte a severidade, variante, tamanho, ícones, carregamento e
+          modo somente ícone.
         </p>
       </header>
 
@@ -81,7 +81,7 @@ interface ExemploButton {
               <justica-button label="Large" size="large"></justica-button>
             </div>
 
-            <div *ngSwitchCase="'Icon Only'" class="linha">
+            <div *ngSwitchCase="'Somente ícone'" class="linha">
               <justica-button icon="fa-solid fa-gear" aria-label="Configurações"></justica-button>
               <justica-button
                 icon="fa-solid fa-pen"
@@ -133,7 +133,7 @@ export class ButtonPageComponent {
   exemplos: ExemploButton[] = [
     {
       titulo: 'Severidades',
-      descricao: 'Define o destaque visual com a propriedade severity.',
+      descricao: 'Define o destaque visual do botão por meio da propriedade severity.',
       template: 'severidades',
       codigo: [
         '<justica-button label="Primary"></justica-button>',
@@ -144,7 +144,7 @@ export class ButtonPageComponent {
     },
     {
       titulo: 'Variantes',
-      descricao: 'Altera o estilo do botão (solid, outlined, text, link).',
+      descricao: 'Altera o estilo visual do botão entre solid, outlined, text e link.',
       template: 'variantes',
       codigo: [
         '<justica-button label="Solid"></justica-button>',
@@ -155,7 +155,7 @@ export class ButtonPageComponent {
     },
     {
       titulo: 'Ícones e posições',
-      descricao: 'Use icon e iconPos para exibir ícones em diferentes posições.',
+      descricao: 'Exibe ícones em diferentes posições usando as propriedades icon e iconPos.',
       template: 'icones',
       codigo: [
         '<justica-button label="Left" icon="fa-solid fa-arrow-left" iconPos="left"></justica-button>',
@@ -165,7 +165,7 @@ export class ButtonPageComponent {
     },
     {
       titulo: 'Estados',
-      descricao: 'Controle estado de loading, disabled, rounded e tamanho.',
+      descricao: 'Controla os estados de carregamento, desabilitado, arredondado e tamanho.',
       template: 'estados',
       codigo: [
         '<justica-button label="Loading" [loading]="true"></justica-button>',
@@ -175,8 +175,8 @@ export class ButtonPageComponent {
       ].join('\n')
     },
     {
-      titulo: 'Icon Only',
-      descricao: 'Botões somente com ícone. Use aria-label para acessibilidade.',
+      titulo: 'Somente ícone',
+      descricao: 'Exibe botões somente com ícone e usa aria-label para manter a acessibilidade.',
       template: 'icononly',
       codigo: [
         '<justica-button icon="fa-solid fa-gear" aria-label="Configurações"></justica-button>',
