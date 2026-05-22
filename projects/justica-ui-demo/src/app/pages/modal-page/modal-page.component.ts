@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {JusticaModalService} from '@justica/ui';
+import {JUSTICA_ACCESS_TOKEN_KEY, JUSTICA_WINDOW, JusticaWindow} from '@justica/core';
 
 interface ExemploModal {
   titulo: string;
@@ -168,8 +169,9 @@ export class ModalPageComponent {
   ];
 
   constructor(
-    private readonly _modalService: JusticaModalService
-  ) {}
+    private readonly _modalService: JusticaModalService,
+    @Inject(JUSTICA_WINDOW)
+    private readonly _window: JusticaWindow) {}
 
   executar(titulo: string): void {
     switch (titulo) {
@@ -197,7 +199,7 @@ export class ModalPageComponent {
   }
 
   copiar(texto: string): void {
-    const nav = window.navigator as Navigator & {
+    const nav = this._window.navigator as Navigator & {
       clipboard?: {writeText: (value: string) => Promise<void>};
     };
 
