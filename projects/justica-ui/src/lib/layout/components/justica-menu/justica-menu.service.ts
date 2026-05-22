@@ -1,27 +1,10 @@
-import {Component, Inject, Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, shareReplay} from 'rxjs/operators';
-import {JUSTICA_CORE_CONFIG, JusticaCoreConfig, JusticaDialogRef, JusticaDialogService} from '@justica/core';
+import {JUSTICA_CORE_CONFIG, JusticaCoreConfig, JusticaDialogService} from '@justica/core';
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../../../configs/justica-ui.config';
 import {JusticaMenu} from '../../../models/justica-menu.model';
-
-@Component({
-  selector: 'app-botao-confirmar-dialog',
-  template: `
-    <justica-button type="button" label="OK" (click)="confirmar()" size="large"></justica-button>
-  `
-})
-export class BotaoErroCarregarMenu {
-  constructor(
-    private readonly dialogRef: JusticaDialogRef
-  ) {}
-
-  confirmar(): void {
-    this.dialogRef.fechar(true);
-  }
-}
-
 
 @Injectable({
   providedIn: 'root'
@@ -50,14 +33,10 @@ export class JusticaMenuService {
     return this._http.get<JusticaMenu[]>(`${this.urlApi}gestao/menu`).pipe(
       map((itens) => this.filtrarItensAtivosEVisiveis(itens)),
       catchError(() => {
-        this._justicaDialogService.abrir({
-          tipo: 'error',
-          titulo: 'Erro ao carregar menu',
-          mensagem: 'Não foi possível carregar as opções do menu. Tente novamente mais tarde.',
-          tempoFechamentoAutomaticoMs: 2000,
-          exibirConfirmar: true,
-          componenteBotaoConfirmar: BotaoErroCarregarMenu
-        });
+        this._justicaDialogService.erro(
+          'Erro ao carregar menu',
+          'Não foi possível carregar as opções do menu. Tente novamente mais tarde.'
+        );
         return of([]);
       })
     );

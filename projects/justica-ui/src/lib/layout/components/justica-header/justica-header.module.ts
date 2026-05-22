@@ -5,14 +5,8 @@ import {JusticaLogoutComponent} from './justica-logout/justica-logout.component'
 import {JusticaButtonModule} from '../../../components/justica-button';
 
 @NgModule({
-  declarations: [
-    JusticaHeaderComponent,
-    JusticaLogoutComponent
-  ],
-  imports: [
-    CommonModule,
-    JusticaButtonModule
-  ],
+  declarations: [JusticaHeaderComponent, JusticaLogoutComponent],
+  imports: [CommonModule, JusticaButtonModule],
   exports: [JusticaHeaderComponent]
 })
-export class JusticaHeaderModule { }
+export class JusticaHeaderModule {}

@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import {
   JusticaAuthService,
   JusticaInatividadeUsuarioService,
@@ -16,8 +24,8 @@ import {Subscription} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class JusticaLayoutComponent implements OnInit {
-  @Input() nomeProjeto !: string;
+export class JusticaLayoutComponent implements OnInit, OnDestroy {
+  @Input() nomeProjeto!: string;
   @Input() versao!: string;
 
   readonly usuarioLogado: boolean;
@@ -52,8 +60,9 @@ export class JusticaLayoutComponent implements OnInit {
     if (this.usuarioLogado) {
       this._justicaInatividadeUsuarioService.iniciarMonitoramento();
       this._subscription.add(
-        this._justicaInatividadeUsuarioService.usuarioInativo$
-          .subscribe(() => this._justicaAuthService.realizarLogout())
+        this._justicaInatividadeUsuarioService.usuarioInativo$.subscribe(() =>
+          this._justicaAuthService.realizarLogout()
+        )
       );
     }
   }

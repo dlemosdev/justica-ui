@@ -4,9 +4,7 @@ import {JusticaSidebarComponent} from './justica-sidebar.component';
 
 @NgModule({
   declarations: [JusticaSidebarComponent],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [JusticaSidebarComponent]
 })
-export class JusticaSidebarModule { }
+export class JusticaSidebarModule {}

@@ -1,6 +1,1 @@
-export {
-  JusticaLayoutComponent,
-  JusticaLayoutModule,
-  JusticaMenu
-} from '@justica/ui';
-
+export {JusticaLayoutComponent, JusticaLayoutModule, JusticaMenu} from '@justica/ui';

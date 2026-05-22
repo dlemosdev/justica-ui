@@ -5,4 +5,3 @@ export {
   JusticaUiConfig,
   provideJusticaUi
 } from '@justica/ui';
-

@@ -13,7 +13,7 @@
 
 .justica-menu-topo__link {
   min-height: 35px;
-  padding: 0 .5rem;;
+  padding: 0 0.5rem;
   display: inline-flex;
   align-items: center;
   color: var(--justica-color-text-primary);
@@ -132,7 +132,7 @@
   text-align: center;
   font-size: var(--justica-size-7);
   color: var(--justica-color-text-secondary);
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .justica-submenu__seta {
@@ -152,13 +152,12 @@
 .justica-menu-topo__icone {
   font-size: var(--justica-size-8);
   color: var(--justica-color-text-secondary);
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .justica-menu-topo__seta {
-  margin-left: .4rem;
+  margin-left: 0.4rem;
   font-size: var(--justica-size-5);
   color: var(--justica-color-text-secondary);
   margin-top: 0.1rem;
 }
-

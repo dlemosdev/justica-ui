@@ -1,0 +1,9 @@
+<ng-container *ngFor="let grupo of grupos$ | async; trackBy: trackByGrupo">
+  <section [ngClass]="classeGrupo(grupo)" aria-label="Notificações">
+    <justica-toast-item
+      *ngFor="let toast of grupo.toasts; trackBy: trackByToast"
+      [toast]="toast"
+      (fechar)="fechar($event)"
+    ></justica-toast-item>
+  </section>
+</ng-container>

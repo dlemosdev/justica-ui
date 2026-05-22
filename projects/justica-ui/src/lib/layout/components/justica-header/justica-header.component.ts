@@ -1,12 +1,23 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {JusticaSidebarEstadoService} from '../justica-sidebar/justica-sidebar-estado.service';
 import {JUSTICA_LOGO_STJ_DATA_URL} from '../../constants/justica-assets.const';
-import {JusticaModalService} from '../../../components/justica-modal/justica-modal.service';
-import {JusticaLogoutComponent} from './justica-logout/justica-logout.component';
-import {JusticaInatividadeUsuarioService, JusticaUsuarioService} from '@justica/core/services';
+import {
+  JusticaAuthService,
+  JusticaInatividadeUsuarioService,
+  JusticaUsuarioService
+} from '@justica/core/services';
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../../../configs';
+import {JusticaDialogService} from '@justica/core';
 
 @Component({
   selector: 'justica-header[nomeProjeto][versao]',
@@ -31,8 +42,9 @@ export class JusticaHeaderComponent implements OnInit, OnDestroy {
     @Inject(JUSTICA_UI_CONFIG)
     private readonly _config: JusticaUiConfig,
     private readonly _detectorMudanca: ChangeDetectorRef,
-    private readonly _sidebarEstadoService: JusticaSidebarEstadoService,
-    private readonly _modalService: JusticaModalService,
+    private readonly _justicaSidebarEstadoService: JusticaSidebarEstadoService,
+    private readonly _justicaDialogService: JusticaDialogService,
+    private readonly _justicaAuthService: JusticaAuthService,
     private readonly _justicaUsuarioService: JusticaUsuarioService,
     private readonly _justicaInatividadeUsuarioService: JusticaInatividadeUsuarioService
   ) {
@@ -41,8 +53,8 @@ export class JusticaHeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sidebarRecolhida = this._sidebarEstadoService.obterEstadoAtual();
-    this._sidebarEstadoService.estadoRecolhido$
+    this.sidebarRecolhida = this._justicaSidebarEstadoService.obterEstadoAtual();
+    this._justicaSidebarEstadoService.estadoRecolhido$
       .pipe(takeUntil(this._destruir$))
       .subscribe((recolhida) => {
         this.sidebarRecolhida = recolhida;
@@ -68,11 +80,18 @@ export class JusticaHeaderComponent implements OnInit, OnDestroy {
   }
 
   aoAlternarLateral(): void {
-    this._sidebarEstadoService.alternar();
+    this._justicaSidebarEstadoService.alternar();
   }
 
-  abrirModalLogout(): void {
-    this._modalService.abrirModal(JusticaLogoutComponent);
+  aoClicaLogout(): void {
+    this._justicaDialogService
+      .confirmar('Atenção!', 'Deseja realmente sair do Sistema Justiça?')
+      .afterClosed()
+      .subscribe((confirmado) => {
+        if (confirmado) {
+          this._justicaAuthService.realizarLogout();
+        }
+      });
   }
 
   private atualizarDataHoraBrasilia(): void {

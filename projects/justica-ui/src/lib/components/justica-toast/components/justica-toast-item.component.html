@@ -1,0 +1,26 @@
+<article
+  *ngIf="toast"
+  class="justica-toast-item"
+  [ngClass]="classeTipo"
+  role="feed"
+  aria-live="polite"
+>
+  <span class="justica-toast-item__icone" aria-hidden="true">
+    <i [class]="icone"></i>
+  </span>
+
+  <div class="justica-toast-item__conteudo">
+    <strong class="justica-toast-item__titulo">{{ toast.titulo }}</strong>
+    <p class="justica-toast-item__descricao">{{ toast.descricao }}</p>
+  </div>
+
+  <button
+    *ngIf="toast.fecharManual"
+    type="button"
+    class="justica-toast-item__fechar"
+    aria-label="Fechar notificação"
+    (click)="fecharToast()"
+  >
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+  </button>
+</article>

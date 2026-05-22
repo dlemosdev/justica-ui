@@ -24,9 +24,7 @@ describe('MenuService', () => {
         },
         {
           provide: JusticaDialogService,
-          useValue: jasmine.createSpyObj<JusticaDialogService>('JusticaDialogService', [
-            'erro'
-          ])
+          useValue: jasmine.createSpyObj<JusticaDialogService>('JusticaDialogService', ['erro'])
         }
       ]
     });
@@ -59,10 +57,7 @@ describe('MenuService', () => {
       {label: 'Invisivel', visible: false}
     ]);
 
-    expect(menus[0].map((item) => item.label)).toEqual([
-      'Visivel por padrao',
-      'Ativo explicito'
-    ]);
+    expect(menus[0].map((item) => item.label)).toEqual(['Visivel por padrao', 'Ativo explicito']);
   });
 
   it('deve exibir dialogo e retornar menu vazio quando falhar ao carregar', () => {

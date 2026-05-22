@@ -16,12 +16,9 @@ import {JusticaSidebarModule} from './components/justica-sidebar/justica-sidebar
     JusticaMenuModule,
     JusticaSidebarModule,
     // Modulos externos
-    JusticaModalModule,
+    JusticaModalModule
   ],
-  declarations: [
-    JusticaLayoutComponent,
-  ],
+  declarations: [JusticaLayoutComponent],
   exports: [JusticaLayoutComponent]
 })
-export class JusticaLayoutModule {
-}
+export class JusticaLayoutModule {}

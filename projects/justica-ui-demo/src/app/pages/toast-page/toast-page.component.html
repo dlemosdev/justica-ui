@@ -1,0 +1,113 @@
+<justica-toast></justica-toast>
+
+<section class="doc">
+  <header class="doc__header">
+    <h2>Justica Toast</h2>
+    <p>
+      Notificações compactas para mensagens de sucesso, alerta, informação e erro, com empilhamento
+      e posicionamento configurável.
+    </p>
+  </header>
+
+  <article class="doc__bloco">
+    <h3>Como importar</h3>
+    <p class="doc__descricao">
+      Importe o módulo no módulo da aplicação ou da feature e adicione o container uma vez no
+      template.
+    </p>
+
+    <div class="doc__code">
+      <button type="button" class="copy-btn" (click)="copiar(codigoImportacao)">
+        Copiar código
+      </button>
+      <pre><code>{{ codigoImportacao }}</code></pre>
+    </div>
+
+    <div class="doc__code">
+      <button type="button" class="copy-btn" (click)="copiar(codigoContainer)">
+        Copiar código
+      </button>
+      <pre><code>{{ codigoContainer }}</code></pre>
+    </div>
+  </article>
+
+  <article class="doc__bloco">
+    <h3>Tipos disponíveis</h3>
+    <p class="doc__descricao">
+      Cada tipo aplica ícone, destaque lateral e cor semântica do design system.
+    </p>
+
+    <div class="tipo-grid">
+      <button
+        *ngFor="let item of tipos"
+        type="button"
+        class="tipo-card"
+        [ngClass]="'tipo-card--' + item.tipo"
+        (click)="exibirTipo(item.tipo)"
+      >
+        <i [class]="item.icone" aria-hidden="true"></i>
+        <span>{{ item.tipo | titlecase }}</span>
+      </button>
+    </div>
+  </article>
+
+  <article class="doc__bloco" *ngFor="let exemplo of exemplos">
+    <h3>{{ exemplo.titulo }}</h3>
+    <p class="doc__descricao">{{ exemplo.descricao }}</p>
+
+    <div class="doc__preview">
+      <justica-button
+        [label]="exemplo.acao"
+        icon="fa-solid fa-bell"
+        (click)="exibirExemplo(exemplo)"
+      ></justica-button>
+    </div>
+
+    <div class="doc__code">
+      <button type="button" class="copy-btn" (click)="copiar(exemplo.codigo)">Copiar código</button>
+      <pre><code>{{ exemplo.codigo }}</code></pre>
+    </div>
+  </article>
+
+  <article class="doc__bloco">
+    <h3>Posicionamento</h3>
+    <p class="doc__descricao">
+      Combine posição vertical e horizontal para exibir notificações em nove áreas da tela.
+    </p>
+
+    <div class="posicao-grid">
+      <button
+        *ngFor="let posicao of posicoes"
+        type="button"
+        class="posicao-card"
+        (click)="exibirPosicao(posicao)"
+      >
+        {{ posicao.titulo }}
+      </button>
+    </div>
+  </article>
+
+  <article class="doc__bloco">
+    <h3>Empilhamento</h3>
+    <p class="doc__descricao">
+      Múltiplos toasts ocupam a mesma posição em uma pilha vertical com espaçamento consistente.
+    </p>
+
+    <div class="doc__preview doc__preview--acoes">
+      <justica-button
+        label="Exibir pilha"
+        icon="fa-solid fa-layer-group"
+        (click)="exibirPilha()"
+      ></justica-button>
+      <justica-button
+        label="Limpar toasts"
+        variant="outlined"
+        severity="secondary"
+        icon="fa-solid fa-trash"
+        (click)="limpar()"
+      ></justica-button>
+    </div>
+  </article>
+
+  <p class="doc__feedback" *ngIf="mensagemCopia">{{ mensagemCopia }}</p>
+</section>

@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {JusticaModalService} from '@justica/ui';
-import {JUSTICA_ACCESS_TOKEN_KEY, JUSTICA_WINDOW, JusticaWindow} from '@justica/core';
+import {JUSTICA_WINDOW, JusticaWindow} from '@justica/core';
 
 interface ExemploModal {
   titulo: string;
@@ -39,9 +39,7 @@ export class ConteudoModalDemoComponent {
     <section class="doc">
       <header class="doc__header">
         <h2>Justica Modal</h2>
-        <p>
-          Modal do @justica/ui para abrir componentes dinâmicos e projetar conteúdo em tela.
-        </p>
+        <p>Modal do @justica/ui para abrir componentes dinâmicos e projetar conteúdo em tela.</p>
       </header>
 
       <article class="doc__bloco">
@@ -113,8 +111,8 @@ export class ModalPageComponent {
   mensagemCopia = '';
 
   codigoImportacao = [
-    'import {NgModule} from \'@angular/core\';',
-    'import {JusticaModalModule} from \'@justica/ui\';',
+    "import {NgModule} from '@angular/core';",
+    "import {JusticaModalModule} from '@justica/ui';",
     '',
     '@NgModule({',
     '  imports: [JusticaModalModule]',
@@ -123,7 +121,7 @@ export class ModalPageComponent {
   ].join('\n');
 
   codigoFechamento = [
-    'import {JusticaModalService} from \'@justica/ui\';',
+    "import {JusticaModalService} from '@justica/ui';",
     '',
     'constructor(',
     '  private readonly _modalService: JusticaModalService',
@@ -140,8 +138,8 @@ export class ModalPageComponent {
       descricao: 'Abre um componente dinâmico informando o componente e as opções da modal.',
       acao: 'Exibir modal',
       codigo: [
-        'import {JusticaModalService} from \'@justica/ui\';',
-        'import {ConteudoModalDemoComponent} from \'./conteudo-modal-demo.component\';',
+        "import {JusticaModalService} from '@justica/ui';",
+        "import {ConteudoModalDemoComponent} from './conteudo-modal-demo.component';",
         '',
         'constructor(',
         '  private readonly _modalService: JusticaModalService',
@@ -149,7 +147,7 @@ export class ModalPageComponent {
         '',
         'abrirModal(): void {',
         '  this._modalService.abrirModal(ConteudoModalDemoComponent, {',
-        '    titulo: \'Justica Modal\',',
+        "    titulo: 'Justica Modal',",
         '    fecharAoClicarFora: false',
         '  });',
         '}'
@@ -161,7 +159,7 @@ export class ModalPageComponent {
       acao: 'Abrir com clique fora',
       codigo: [
         'this._modalService.abrirModal(ConteudoModalDemoComponent, {',
-        '  titulo: \'Modal com clique fora\',',
+        "  titulo: 'Modal com clique fora',",
         '  fecharAoClicarFora: true',
         '});'
       ].join('\n')
@@ -171,7 +169,8 @@ export class ModalPageComponent {
   constructor(
     private readonly _modalService: JusticaModalService,
     @Inject(JUSTICA_WINDOW)
-    private readonly _window: JusticaWindow) {}
+    private readonly _window: JusticaWindow
+  ) {}
 
   executar(titulo: string): void {
     switch (titulo) {

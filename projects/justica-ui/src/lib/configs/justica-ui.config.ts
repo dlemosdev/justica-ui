@@ -10,22 +10,17 @@ export const JUSTICA_UI_CONFIG_PADRAO: JusticaUiConfig = {
   exibirTempoSessao: true
 };
 
-export function criarJusticaUiConfig(
-  config: JusticaUiConfig = {}
-): JusticaUiConfig {
+export function criarJusticaUiConfig(config: JusticaUiConfig = {}): JusticaUiConfig {
   return {
     ...JUSTICA_UI_CONFIG_PADRAO,
     ...config
   };
 }
 
-export const JUSTICA_UI_CONFIG = new InjectionToken<JusticaUiConfig>(
-  'JUSTICA_UI_CONFIG',
-  {
-    providedIn: 'root',
-    factory: criarJusticaUiConfig
-  }
-);
+export const JUSTICA_UI_CONFIG = new InjectionToken<JusticaUiConfig>('JUSTICA_UI_CONFIG', {
+  providedIn: 'root',
+  factory: criarJusticaUiConfig
+});
 
 export function provideJusticaUiConfig(config?: JusticaUiConfig): Provider[] {
   return [

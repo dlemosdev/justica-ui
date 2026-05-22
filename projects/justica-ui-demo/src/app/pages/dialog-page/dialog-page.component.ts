@@ -22,10 +22,7 @@ interface ExemploDialog {
   ]
 })
 export class BotaoConfirmarDialogComponent {
-
-  constructor(
-    private readonly _dialogRef: JusticaDialogRef<boolean>
-  ) {}
+  constructor(private readonly _dialogRef: JusticaDialogRef<boolean>) {}
 
   confirmar(): void {
     this._dialogRef.fechar(true);
@@ -66,11 +63,7 @@ export class BotaoConfirmarDialogComponent {
         </p>
 
         <div class="tipo-grid">
-          <button
-            type="button"
-            class="tipo-card tipo-card--success"
-            (click)="abrirSucesso()"
-          >
+          <button type="button" class="tipo-card tipo-card--success" (click)="abrirSucesso()">
             <i class="fas fa-check-circle" aria-hidden="true"></i>
             <span>Success</span>
           </button>
@@ -78,11 +71,7 @@ export class BotaoConfirmarDialogComponent {
             <i class="fas fa-times-circle" aria-hidden="true"></i>
             <span>Error</span>
           </button>
-          <button
-            type="button"
-            class="tipo-card tipo-card--warning"
-            (click)="abrirAvancado()"
-          >
+          <button type="button" class="tipo-card tipo-card--warning" (click)="abrirAvancado()">
             <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Warning</span>
           </button>
@@ -90,11 +79,7 @@ export class BotaoConfirmarDialogComponent {
             <i class="fas fa-info-circle" aria-hidden="true"></i>
             <span>Info</span>
           </button>
-          <button
-            type="button"
-            class="tipo-card tipo-card--question"
-            (click)="abrirConfirmacao()"
-          >
+          <button type="button" class="tipo-card tipo-card--question" (click)="abrirConfirmacao()">
             <i class="fas fa-question-circle" aria-hidden="true"></i>
             <span>Question</span>
           </button>
@@ -162,8 +147,8 @@ export class DialogPageComponent {
   resultadoConfirmacao = 'Nenhum diálogo confirmado ou cancelado ainda.';
 
   codigoImportacao = [
-    'import {NgModule} from \'@angular/core\';',
-    'import {JusticaDialogModule} from \'@justica/core/components\';',
+    "import {NgModule} from '@angular/core';",
+    "import {JusticaDialogModule} from '@justica/core/components';",
     '',
     '@NgModule({',
     '  imports: [JusticaDialogModule]',
@@ -177,7 +162,7 @@ export class DialogPageComponent {
       descricao: 'Usa os atalhos do service para exibir mensagens simples de sucesso e erro.',
       acao: 'Exibir sucesso',
       codigo: [
-        'import {JusticaDialogService} from \'@justica/core/components\';',
+        "import {JusticaDialogService} from '@justica/core/components';",
         '',
         'constructor(',
         '  private readonly _justicaDialogService: JusticaDialogService',
@@ -185,20 +170,21 @@ export class DialogPageComponent {
         '',
         'salvar(): void {',
         '  this._justicaDialogService.sucesso(',
-        '    \'Registro salvo\',',
-        '    \'A operação foi realizada com sucesso.\'',
+        "    'Registro salvo',",
+        "    'A operação foi realizada com sucesso.'",
         '  );',
         '}'
       ].join('\n')
     },
     {
       titulo: 'Confirmação padrão',
-      descricao: 'Exibe botões padrão pelo método confirmar e retorna o resultado por afterClosed().',
+      descricao:
+        'Exibe botões padrão pelo método confirmar e retorna o resultado por afterClosed().',
       acao: 'Confirmar exclusão',
       codigo: [
         'excluir(): void {',
         '  this._justicaDialogService',
-        '    .confirmar(\'Deseja excluir?\', \'Essa ação não poderá ser desfeita.\')',
+        "    .confirmar('Deseja excluir?', 'Essa ação não poderá ser desfeita.')",
         '    .afterClosed()',
         '    .subscribe((confirmado) => {',
         '      if (confirmado) {',
@@ -214,16 +200,16 @@ export class DialogPageComponent {
       acao: 'Abrir avançado',
       codigo: [
         'this._justicaDialogService.abrir({',
-        '  tipo: \'warning\',',
-        '  titulo: \'Atenção\',',
-        '  mensagem: \'Revise os dados antes de continuar.\',',
-        '  textoConfirmar: \'Continuar\',',
-        '  textoCancelar: \'Voltar\',',
+        "  tipo: 'warning',",
+        "  titulo: 'Atenção',",
+        "  mensagem: 'Revise os dados antes de continuar.',",
+        "  textoConfirmar: 'Continuar',",
+        "  textoCancelar: 'Voltar',",
         '  exibirConfirmar: true,',
         '  exibirCancelar: true,',
         '  fecharAoClicarFora: false,',
         '  fecharComEsc: true,',
-        '  largura: \'36rem\'',
+        "  largura: '36rem'",
         '});'
       ].join('\n')
     },
@@ -233,9 +219,9 @@ export class DialogPageComponent {
       acao: 'Enviar processo',
       codigo: [
         'this._justicaDialogService.abrir({',
-        '  tipo: \'question\',',
-        '  titulo: \'Enviar processo?\',',
-        '  mensagem: \'Confira os dados antes de confirmar.\',',
+        "  tipo: 'question',",
+        "  titulo: 'Enviar processo?',",
+        "  mensagem: 'Confira os dados antes de confirmar.',",
         '  exibirConfirmar: true,',
         '  exibirCancelar: true,',
         '  componenteBotaoConfirmar: BotaoConfirmarDialogComponent',
@@ -244,9 +230,7 @@ export class DialogPageComponent {
     }
   ];
 
-  constructor(
-    private readonly _justicaDialogService: JusticaDialogService
-  ) {}
+  constructor(private readonly _justicaDialogService: JusticaDialogService) {}
 
   executar(titulo: string): void {
     switch (titulo) {
@@ -266,10 +250,7 @@ export class DialogPageComponent {
   }
 
   abrirSucesso(): void {
-    this._justicaDialogService.sucesso(
-      'Registro salvo',
-      'A operação foi realizada com sucesso.'
-    );
+    this._justicaDialogService.sucesso('Registro salvo', 'A operação foi realizada com sucesso.');
   }
 
   abrirErro(): void {

@@ -9,6 +9,10 @@ export {
   JusticaModalEstado,
   JusticaModalModule,
   JusticaModalOpcoes,
-  JusticaModalService
+  JusticaModalService,
+  JusticaToastComponent,
+  JusticaToastConfig,
+  JusticaToastModule,
+  JusticaToastService,
+  JusticaToastTipo
 } from '@justica/ui';
-

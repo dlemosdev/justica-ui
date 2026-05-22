@@ -209,10 +209,7 @@ Adicione os estilos da biblioteca no `angular.json` do app consumidor:
 
 ```json
 {
-  "styles": [
-    "src/styles.css",
-    "node_modules/@justica/ui/src/lib/styles/justica-ui.css"
-  ]
+  "styles": ["src/styles.css", "node_modules/@justica/ui/src/lib/styles/justica-ui.css"]
 }
 ```
 

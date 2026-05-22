@@ -60,14 +60,16 @@ interface TrechoLayout {
         </div>
       </article>
 
-
-
       <article class="doc__bloco">
         <h3>Pontos importantes</h3>
         <ul class="doc__lista">
-          <li><code>JusticaCoreModule.forRoot</code> precisa receber a URL da API usada pelo core.</li>
+          <li>
+            <code>JusticaCoreModule.forRoot</code> precisa receber a URL da API usada pelo core.
+          </li>
           <li><code>JusticaUiModule.forRoot</code> habilita as configurações globais do UI.</li>
-          <li>O core registra os interceptors necessários ao importar <code>JusticaCoreModule</code>.</li>
+          <li>
+            O core registra os interceptors necessários ao importar <code>JusticaCoreModule</code>.
+          </li>
           <li>Rotas protegidas podem usar <code>JusticaAutenticadoGuard</code>.</li>
         </ul>
       </article>
@@ -94,16 +96,16 @@ export class LayoutPageComponent {
   mensagemCopia = '';
 
   readonly codigoAppComponent = [
-    'import {Component} from \'@angular/core\';',
+    "import {Component} from '@angular/core';",
     '',
-    'import {version} from \'../../../../package.json\';',
+    "import {version} from '../../../../package.json';",
     '',
     '@Component({',
-    '  selector: \'app-root\',',
-    '  templateUrl: \'./app.component.html\'',
+    "  selector: 'app-root',",
+    "  templateUrl: './app.component.html'",
     '})',
     'export class AppComponent {',
-    '  readonly nomeProjeto = \'Layout\';',
+    "  readonly nomeProjeto = 'Layout';",
     '  readonly version = version;',
     '}'
   ].join('\n');
@@ -134,7 +136,8 @@ export class LayoutPageComponent {
   readonly trechos: TrechoLayout[] = [
     {
       titulo: 'Imports do módulo',
-      descricao: 'Registra o core, o UI e os módulos usados nos slots do layout no módulo da aplicação.',
+      descricao:
+        'Registra o core, o UI e os módulos usados nos slots do layout no módulo da aplicação.',
       codigo: [
         'imports: [',
         '  BrowserModule,',
@@ -154,7 +157,7 @@ export class LayoutPageComponent {
       codigo: [
         'const routes: Routes = [',
         '  {',
-        '    path: \'minha-rota\',',
+        "    path: 'minha-rota',",
         '    component: MinhaPaginaComponent,',
         '    canActivate: [JusticaAutenticadoGuard]',
         '  }',

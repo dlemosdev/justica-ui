@@ -32,10 +32,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/justica-ui/**/*.ts",
-              "projects/justica-ui/**/*.html"
-            ]
+            "lintFilePatterns": ["projects/justica-ui/**/*.ts", "projects/justica-ui/**/*.html"]
           }
         }
       }
