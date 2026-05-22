@@ -1,6 +1,4 @@
-import {APP_INITIALIZER, Component, Injectable, Injector, ModuleWithProviders, NgModule} from '@angular/core';
-import {JusticaDialogRef, JusticaDialogService} from '@justica/core';
-import {JusticaAuthService, JusticaUsuarioService} from '@justica/core/services';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 
 import {JusticaButtonModule} from './components/justica-button/justica-button.module';
 import {JusticaLayoutModule} from './layout/justica-layout.module';

@@ -2,11 +2,7 @@ import {Component, Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, shareReplay} from 'rxjs/operators';
-import {
-  JUSTICA_CORE_CONFIG,
-  JusticaCoreConfig, JusticaDialogRef,
-  JusticaDialogService
-} from '@justica/core';
+import {JUSTICA_CORE_CONFIG, JusticaCoreConfig, JusticaDialogRef, JusticaDialogService} from '@justica/core';
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../../../configs/justica-ui.config';
 import {JusticaMenu} from '../../../models/justica-menu.model';
 

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {JusticaLayoutComponent} from './justica-layout.component';
-import {JusticaButtonModule} from '../components/justica-button/justica-button.module';
 import {JusticaModalModule} from '../components/justica-modal/justica-modal.module';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';

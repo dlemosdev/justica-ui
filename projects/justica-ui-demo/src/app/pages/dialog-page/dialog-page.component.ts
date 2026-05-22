@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {JusticaDialogRef } from '@justica/core/components';
+import {JusticaDialogRef} from '@justica/core/components';
 import {JusticaDialogService} from '@justica/core/services';
 
 interface ExemploDialog {

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {JusticaHeaderComponent} from './justica-header.component';
 import {JusticaLogoutComponent} from './justica-logout/justica-logout.component';
 import {JusticaButtonModule} from '../../../components/justica-button';

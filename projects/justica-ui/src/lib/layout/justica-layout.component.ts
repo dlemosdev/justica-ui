@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewEncapsula
 import {
   JusticaAuthService,
   JusticaInatividadeUsuarioService,
-  JusticaUsuarioService,
-  JusticaSessaoMonitorService
+  JusticaSessaoMonitorService,
+  JusticaUsuarioService
 } from '@justica/core/services';
 
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../configs/justica-ui.config';
