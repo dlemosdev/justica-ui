@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, shareReplay} from 'rxjs/operators';
 import {JUSTICA_CORE_CONFIG, JusticaCoreConfig, JusticaDialogService} from '@justica/core';
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../../../configs/justica-ui.config';
+import {JUSTICA_LAYOUT_CONFIG, JusticaLayoutConfig} from '../../../configs/justica-layout.config';
 import {JusticaMenu} from '../../../models/justica-menu.model';
 
 @Injectable({
@@ -16,8 +17,8 @@ export class JusticaMenuService {
   constructor(
     private readonly _http: HttpClient,
     private readonly _justicaDialogService: JusticaDialogService,
-    @Inject(JUSTICA_UI_CONFIG)
-    private readonly _uiConfig: JusticaUiConfig,
+    @Inject(JUSTICA_LAYOUT_CONFIG)
+    private readonly _layoutConfig: JusticaLayoutConfig,
     @Inject(JUSTICA_CORE_CONFIG)
     private readonly _coreConfig: JusticaCoreConfig
   ) {
@@ -26,7 +27,7 @@ export class JusticaMenuService {
   }
 
   private carregarMenu(): Observable<JusticaMenu[]> {
-    if (this._uiConfig.exibirMenu === false) {
+    if (this._layoutConfig.exibirMenu === false) {
       return of([]);
     }
 
