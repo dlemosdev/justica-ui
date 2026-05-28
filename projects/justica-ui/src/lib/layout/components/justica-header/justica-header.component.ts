@@ -18,6 +18,8 @@ import {
 } from '@justica/core/services';
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../../../configs';
 import {JusticaDialogService} from '@justica/core';
+import {JusticaModalService} from '../../../components/justica-modal/justica-modal.service';
+import {JusticaLogErroComponent} from './justica-log-erro/justica-log-erro.component';
 
 @Component({
   selector: 'justica-header[nomeProjeto][versao]',
@@ -44,6 +46,7 @@ export class JusticaHeaderComponent implements OnInit, OnDestroy {
     private readonly _detectorMudanca: ChangeDetectorRef,
     private readonly _justicaSidebarEstadoService: JusticaSidebarEstadoService,
     private readonly _justicaDialogService: JusticaDialogService,
+    private readonly _justicaModalService: JusticaModalService,
     private readonly _justicaAuthService: JusticaAuthService,
     private readonly _justicaUsuarioService: JusticaUsuarioService,
     private readonly _justicaInatividadeUsuarioService: JusticaInatividadeUsuarioService
@@ -92,6 +95,14 @@ export class JusticaHeaderComponent implements OnInit, OnDestroy {
           this._justicaAuthService.realizarLogout();
         }
       });
+  }
+
+  aoClicarAlertas(): void {
+    this._justicaModalService.abrirModal(JusticaLogErroComponent, {
+      titulo: 'Diário de Erros',
+      fecharAoClicarFora: false,
+      largura: 'min(58rem, 92vw)'
+    });
   }
 
   private atualizarDataHoraBrasilia(): void {

@@ -1,5 +1,5 @@
-﻿<div *ngIf="aberta" class="justica-modal__fundo" (click)="aoClicarNoFundo()">
-  <div class="justica-modal__janela" (click)="$event.stopPropagation()">
+<div *ngIf="aberta" class="justica-modal__fundo" (click)="aoClicarNoFundo()">
+  <div class="justica-modal__janela" [style.width]="largura" (click)="$event.stopPropagation()">
     <div class="justica-modal__cabecalho" *ngIf="titulo || !fecharAoClicarFora">
       <h2 *ngIf="titulo" class="justica-modal__titulo">{{ titulo }}</h2>
       <button
@@ -14,14 +14,10 @@
     </div>
 
     <div class="justica-modal__conteudo">
-      <ng-container *ngIf="componenteDinamico; else conteudoProjetado">
-        <ng-container
-          *ngComponentOutlet="componenteDinamico; injector: injectorComponente"
-        ></ng-container>
-      </ng-container>
-      <ng-template #conteudoProjetado>
+      <ng-container #conteudoDinamico></ng-container>
+      <ng-container *ngIf="!componenteDinamico">
         <ng-content></ng-content>
-      </ng-template>
+      </ng-container>
     </div>
   </div>
 </div>

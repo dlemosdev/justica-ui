@@ -1,4 +1,4 @@
-﻿.justica-modal__fundo {
+.justica-modal__fundo {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
@@ -9,8 +9,8 @@
 }
 
 .justica-modal__janela {
-  width: min(25rem, 90vw);
   min-height: 15rem;
+  max-height: 92vh;
   background: var(--justica-color-background);
   border-radius: var(--justica-size-2);
   box-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.35);
@@ -51,4 +51,5 @@
 
 .justica-modal__conteudo {
   margin-top: var(--justica-size-6);
+  min-width: 0;
 }

@@ -40,29 +40,36 @@
       <ng-content></ng-content>
     </div>
 
+    <justica-notificacao #notificacaoHeader>
+      <justica-button
+        class="justica-cabecalho__botao-icone"
+        [class.justica-cabecalho__botao-icone--ativo]="notificacaoHeader.overlayAberto"
+        severity="transparent"
+        [rounded]="true"
+        aria-label="Notificações"
+        icon="fas fa-bell"
+        size="large"
+        [disabled]="!usuarioLogado"
+      ></justica-button>
+    </justica-notificacao>
     <justica-button
-      severity="transparent"
-      aria-label="Notificações"
-      size="large"
-      [disabled]="!usuarioLogado"
-    >
-      <i class="fas fa-bell" aria-hidden="true"></i>
-    </justica-button>
-    <justica-button
+      class="justica-cabecalho__botao-icone"
       severity="transparent"
       aria-label="Alertas"
+      icon="fas fa-triangle-exclamation"
+      (aoClicar)="aoClicarAlertas()"
       size="large"
+      [rounded]="true"
       [disabled]="!usuarioLogado"
-    >
-      <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
-    </justica-button>
+    ></justica-button>
     <justica-button
+      class="justica-cabecalho__botao-icone"
       severity="transparent"
       aria-label="Sair"
+      icon="fas fa-power-off"
       (aoClicar)="aoClicaLogout()"
       size="large"
-    >
-      <i class="fas fa-power-off" aria-hidden="true"></i>
-    </justica-button>
+      [rounded]="true"
+    ></justica-button>
   </div>
 </header>

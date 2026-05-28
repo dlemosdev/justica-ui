@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {JusticaDialogRef} from '@justica/core/components';
-import {JusticaDialogService} from '@justica/core/services';
+import {JusticaDialogRef, JusticaDialogService} from '@justica/core/components';
 
 interface ExemploDialog {
   titulo: string;
@@ -22,7 +21,7 @@ interface ExemploDialog {
   ]
 })
 export class BotaoConfirmarDialogComponent {
-  constructor(private readonly _dialogRef: JusticaDialogRef<boolean>) {}
+  constructor(private readonly _dialogRef: JusticaDialogRef) {}
 
   confirmar(): void {
     this._dialogRef.fechar(true);

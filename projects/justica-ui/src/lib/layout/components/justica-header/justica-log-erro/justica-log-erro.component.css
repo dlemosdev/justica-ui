@@ -1,0 +1,204 @@
+:host {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 0;
+}
+
+.justica-log-erro {
+  background: #ffffff;
+  color: #111827;
+  max-width: 960px;
+  min-width: 0;
+  width: 100%;
+}
+
+.justica-log-erro__cabecalho {
+  border-bottom: 1px solid #d7dce2;
+  padding: 16px 20px;
+}
+
+.justica-log-erro__titulo {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.justica-log-erro__conteudo {
+  max-height: 450px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  scrollbar-gutter: stable;
+}
+
+.justica-log-erro__item {
+  border: 1px solid #edf0f3;
+  border-bottom-color: #aeb5bd;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.justica-log-erro__resumo,
+.justica-log-erro__detalhe {
+  column-gap: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) 80px 40px;
+  padding: 12px 8px;
+  row-gap: 8px;
+}
+
+.justica-log-erro__campo {
+  font-size: 14px;
+  line-height: 1.45;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.justica-log-erro__campo--linha {
+  grid-column: 1 / -1;
+}
+
+.justica-log-erro__campo--status {
+  text-align: center;
+}
+
+.justica-log-erro__status {
+  border-radius: 4px;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 40px;
+  padding: 3px 8px;
+  text-align: center;
+}
+
+.justica-log-erro__status--erro {
+  background: #db2d4f;
+}
+
+.justica-log-erro__status--warn {
+  background: #d97706;
+}
+
+.justica-log-erro__detalhe-botao {
+  align-items: center;
+  background: #e5e7eb;
+  border: 0;
+  border-radius: 50%;
+  color: #5b6168;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 24px;
+  height: 28px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  transition: background-color 180ms ease, color 180ms ease;
+  width: 28px;
+}
+
+.justica-log-erro__detalhe-botao:hover {
+  background: #d1d5db;
+}
+
+.justica-log-erro__detalhe-botao--expandido {
+  background: #d1d5db;
+  color: #374151;
+}
+
+.justica-log-erro__detalhe {
+  display: grid;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding-bottom: 0;
+  padding-top: 0;
+  transition: max-height 260ms ease, opacity 180ms ease, padding 260ms ease;
+}
+
+.justica-log-erro__detalhe--visivel {
+  max-height: 1200px;
+  opacity: 1;
+  padding-bottom: 12px;
+}
+
+.justica-log-erro__divisor {
+  border-top: 1px solid #d8dde3;
+  grid-column: 1 / -1;
+  height: 1px;
+}
+
+.justica-log-erro__codigo {
+  color: #b42318;
+  display: block;
+  grid-column: 1 / -1;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.justica-log-erro__vazio {
+  border: 1px dashed #cbd5e1;
+  color: #475569;
+  padding: 24px;
+  text-align: center;
+}
+
+.justica-log-erro__acoes {
+  border-top: 1px solid #d7dce2;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 12px 16px;
+}
+
+.justica-log-erro__botao {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 36px;
+  padding: 8px 14px;
+}
+
+.justica-log-erro__botao:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.justica-log-erro__botao--secundario {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1f2937;
+}
+
+.justica-log-erro__botao--perigo {
+  background: #b91c1c;
+  color: #ffffff;
+}
+
+@media (max-width: 720px) {
+  .justica-log-erro__resumo,
+  .justica-log-erro__detalhe {
+    grid-template-columns: 1fr 40px;
+  }
+
+  .justica-log-erro__campo,
+  .justica-log-erro__campo--modulo,
+  .justica-log-erro__campo--data,
+  .justica-log-erro__campo--status,
+  .justica-log-erro__campo--linha {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .justica-log-erro__detalhe-botao {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+}

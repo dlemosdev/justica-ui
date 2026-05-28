@@ -1,0 +1,150 @@
+<section class="justica-log-erro" role="dialog" aria-labelledby="justica-log-erro-titulo">
+  <div class="justica-log-erro__conteudo">
+    <article class="justica-log-erro__item" *ngFor="let log of logs; let i = index">
+      <div class="justica-log-erro__resumo">
+        <span class="justica-log-erro__campo justica-log-erro__campo--modulo">
+          <strong>Módulo:</strong>
+          {{ log.modulo }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--data">
+          <strong>Data:</strong>
+          {{ log.data | date: 'dd/MM/yyyy HH:mm:ss' }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--status">
+          <span
+            *ngIf="log.erro && log.erro.status !== null && log.erro.status !== undefined"
+            [ngClass]="obterClasseStatus(log.erro.status)"
+          >
+            {{ log.erro.status }}
+          </span>
+        </span>
+
+        <button
+          type="button"
+          class="justica-log-erro__detalhe-botao"
+          [class.justica-log-erro__detalhe-botao--expandido]="detalhesVisiveis[i]"
+          [attr.aria-expanded]="detalhesVisiveis[i] ? 'true' : 'false'"
+          [attr.aria-controls]="'justica-log-erro-detalhe-' + i"
+          (click)="mostrarDetalhe(i)"
+        >
+          {{ detalhesVisiveis[i] ? '-' : '+' }}
+        </button>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.title">
+          <strong>Título:</strong>
+          {{ log.erro.title }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="obterDetalhe(log.erro)">
+          <strong>Detalhe:</strong>
+          {{ obterDetalhe(log.erro) }}
+        </span>
+      </div>
+
+      <div
+        class="justica-log-erro__detalhe"
+        [class.justica-log-erro__detalhe--visivel]="detalhesVisiveis[i]"
+        [id]="'justica-log-erro-detalhe-' + i"
+      >
+        <div class="justica-log-erro__divisor"></div>
+
+        <span class="justica-log-erro__campo" *ngIf="log.erro && log.erro.httpStatus">
+          <strong>HTTP Status:</strong>
+          {{ log.erro.httpStatus }}
+        </span>
+
+        <span class="justica-log-erro__campo" *ngIf="log.erro && log.erro.resource">
+          <strong>Recurso:</strong>
+          {{ log.erro.resource }}
+        </span>
+
+        <span class="justica-log-erro__campo" *ngIf="log.erro && log.erro.errorKey">
+          <strong>Chave:</strong>
+          {{ log.erro.errorKey }}
+        </span>
+
+        <span class="justica-log-erro__campo" *ngIf="log.erro && log.erro.metodoHttp">
+          <strong>HTTP Método:</strong>
+          {{ log.erro.metodoHttp }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.path">
+          <strong>URL:</strong>
+          {{ log.erro.path }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.dataUser">
+          <strong>Dados do usuário logado:</strong>
+          {{ log.erro.dataUser }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.className">
+          <strong>Classe:</strong>
+          {{ log.erro.className }}
+        </span>
+
+        <span class="justica-log-erro__campo" *ngIf="log.erro && log.erro.methodName">
+          <strong>Método:</strong>
+          {{ log.erro.methodName }}
+        </span>
+
+        <span class="justica-log-erro__campo" *ngIf="log.erro && log.erro.numLineErro">
+          <strong>Nº linha:</strong>
+          {{ log.erro.numLineErro }}
+        </span>
+
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && (log.erro.exceptionName || log.erro.exception)"
+        >
+          <strong>Nome da exceção:</strong>
+          {{ log.erro.exceptionName || log.erro.exception }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.parametrosExtras">
+          <strong>Parâmetros enviados:</strong>
+          {{ log.erro.parametrosExtras | json }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.error">
+          <strong>Erro:</strong>
+          {{ log.erro.error }}
+        </span>
+
+        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.cause">
+          <strong>Causa:</strong>
+          {{ log.erro.cause }}
+        </span>
+
+        <code class="justica-log-erro__codigo" *ngIf="log.erro && log.erro.stackTraceCause">
+          {{ log.erro.stackTraceCause }}
+        </code>
+
+        <code class="justica-log-erro__codigo" *ngIf="log.erro && log.erro.stack">
+          {{ log.erro.stack }}
+        </code>
+      </div>
+    </article>
+
+    <div class="justica-log-erro__vazio" *ngIf="!logs || logs.length === 0">
+      Nenhum registro de log encontrado!
+    </div>
+  </div>
+
+  <footer class="justica-log-erro__acoes">
+    <button
+      type="button"
+      class="justica-log-erro__botao justica-log-erro__botao--secundario"
+      [disabled]="!logs || logs.length < 1"
+      (click)="exportar()"
+    >
+      Exportar
+    </button>
+
+    <button type="button" class="justica-log-erro__botao justica-log-erro__botao--perigo" (click)="fecharLog()">
+      Fechar
+    </button>
+  </footer>
+</section>

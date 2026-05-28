@@ -1,7 +1,7 @@
 <justica-layout [nomeProjeto]="nomeProjeto" [versao]="version">
   <!--Exemplo de como aplicar botoes customizados no cabecalho-->
-  <justica-button size="large" justica-cabecalho-acoes severity="transparent" aria-label="Ajuda">
-    <i class="fas fa-question-circle" aria-hidden="true"></i>
+  <justica-button size="large" [rounded]="true" justica-cabecalho-acoes severity="transparent" aria-label="Ajuda"
+                  icon="fas fa-question-circle">
   </justica-button>
   <!--Exemplo de como aplicar itens customizados no na sidebar-->
   <justica-sidebar-item justica-sidebar-itens>

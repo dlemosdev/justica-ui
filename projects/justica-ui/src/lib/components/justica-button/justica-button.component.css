@@ -44,22 +44,10 @@
 
 .justica-button--icon-only {
   padding: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  min-width: 2.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  min-width: 2.2rem;
   background: transparent;
-}
-
-.justica-button--size-small.justica-button--icon-only {
-  width: 2rem;
-  height: 2rem;
-  min-width: 2rem;
-}
-
-.justica-button--size-large.justica-button--icon-only {
-  width: 3rem;
-  height: 3rem;
-  min-width: 3rem;
 }
 
 .justica-button--icon-top,
@@ -117,8 +105,25 @@
   color: var(--justica-color-background);
 }
 
+.justica-button--severity-transparent.justica-button--variant-solid {
+  background: transparent;
+  border-color: transparent;
+  color: var(--justica-color-background);
+}
+
 .justica-button--variant-solid:hover:not(:disabled) {
   filter: brightness(0.95);
+}
+
+.justica-button--severity-transparent.justica-button--variant-solid:hover:not(:disabled),
+.justica-button--severity-transparent.justica-button--variant-solid:focus-visible:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: transparent;
+  filter: none;
+}
+
+.justica-button--severity-transparent.justica-button--variant-solid:focus-visible:not(:disabled) {
+  box-shadow: 0 0 0 var(--justica-size-1) rgba(255, 255, 255, 0.28);
 }
 
 .justica-button--variant-outlined {

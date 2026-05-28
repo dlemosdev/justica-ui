@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 export interface JusticaModalOpcoes {
   titulo?: string;
   fecharAoClicarFora?: boolean;
+  largura?: string;
 }
 
 export interface JusticaModalEstado extends JusticaModalOpcoes {
@@ -14,7 +15,8 @@ export interface JusticaModalEstado extends JusticaModalOpcoes {
 const ESTADO_INICIAL: JusticaModalEstado = {
   aberta: false,
   titulo: '',
-  fecharAoClicarFora: true
+  fecharAoClicarFora: true,
+  largura: 'min(25rem, 90vw)'
 };
 
 @Injectable()

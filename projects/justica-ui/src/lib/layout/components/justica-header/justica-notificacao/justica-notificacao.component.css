@@ -1,0 +1,333 @@
+.justica-notificacoes-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.justica-botao-notificacoes {
+  position: relative;
+  display: inline-flex;
+}
+
+.justica-badge-notificacoes {
+  position: absolute;
+  top: calc(var(--justica-size-3) * -1);
+  right: calc(var(--justica-size-3) * -1);
+  z-index: 1;
+  min-width: var(--justica-size-10);
+  height: var(--justica-size-10);
+  padding: 0 var(--justica-size-3);
+  border: var(--justica-size-1) solid var(--justica-color-background);
+  border-radius: 50%;
+  background: var(--justica-color-danger);
+  color: var(--justica-color-background);
+  font-size: 11px;
+  font-weight: var(--justica-font-weight-bold);
+  line-height: var(--justica-size-8);
+  text-align: center;
+}
+
+.justica-overlay-notificacoes {
+  position: absolute;
+  top: calc(100% + var(--justica-size-5));
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  width: min(370px, calc(100vw - var(--justica-size-12)));
+  max-height: 430px;
+  overflow: hidden;
+  border: 1px solid var(--justica-color-border);
+  border-radius: var(--justica-size-3);
+  background: var(--justica-color-background);
+  box-shadow: 0 12px 32px rgba(17, 24, 39, 0.18);
+  color: var(--justica-color-text-primary);
+  transform-origin: top right;
+}
+
+.justica-overlay-notificacoes--aberto {
+  animation: justica-notificacoes-entrada 160ms ease-out;
+}
+
+.justica-cabecalho-notificacoes,
+.justica-rodape-notificacoes {
+  flex: 0 0 auto;
+  background: var(--justica-color-background);
+}
+
+.justica-cabecalho-notificacoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--justica-size-6);
+  padding: var(--justica-size-6);
+  border-bottom: 1px solid var(--justica-color-border);
+}
+
+.justica-titulo-notificacoes {
+  margin: 0;
+  font-size: var(--justica-size-9);
+  font-weight: var(--justica-font-weight-bold);
+  line-height: 1.25;
+}
+
+.justica-acao-marcar-lidas,
+.justica-botao-central-notificacoes,
+.justica-botao-abrir-notificacao {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.justica-acao-marcar-lidas {
+  padding: var(--justica-size-2) 0;
+  color: var(--justica-color-primary);
+  font-size: var(--justica-size-6);
+  font-weight: var(--justica-font-weight-bold);
+  white-space: nowrap;
+}
+
+.justica-acao-marcar-lidas:disabled {
+  color: var(--justica-color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.justica-acao-marcar-lidas:focus-visible,
+.justica-botao-central-notificacoes:focus-visible,
+.justica-botao-abrir-notificacao:focus-visible,
+.justica-item-notificacao:focus-visible {
+  outline: var(--justica-size-1) solid var(--justica-color-primary);
+  outline-offset: var(--justica-size-1);
+}
+
+.justica-lista-notificacoes {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--justica-size-2);
+  overflow-y: auto;
+}
+
+.justica-item-notificacao {
+  position: relative;
+  display: flex;
+  gap: var(--justica-size-5);
+  min-height: 100px;
+  margin-bottom: var(--justica-size-2);
+  padding: var(--justica-size-7) var(--justica-size-6);
+  border: 1px solid transparent;
+  border-radius: var(--justica-size-6);
+  background: var(--justica-color-background);
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.justica-item-notificacao:hover {
+  background: var(--justica-gray-50);
+}
+
+.justica-item-notificacao--nao-visualizada {
+  border-color: var(--justica-blue-100);
+  background: var(--justica-blue-100);
+}
+
+.justica-item-notificacao--visualizada {
+  border-color: var(--justica-gray-100);
+  background: var(--justica-gray-50);
+}
+
+.justica-item-notificacao--visualizada:hover {
+  border-color: var(--justica-gray-200);
+  background: var(--justica-gray-100);
+}
+
+.justica-item-notificacao--nao-visualizada:hover {
+  border-color: var(--justica-blue-200);
+  background: var(--justica-blue-200);
+}
+
+.justica-indicador-nao-lida {
+  flex: 0 0 auto;
+  width: var(--justica-size-4);
+  height: var(--justica-size-4);
+  margin-top: var(--justica-size-3);
+  border-radius: 50%;
+  background: var(--justica-color-primary);
+}
+
+.justica-indicador-lida {
+  opacity: 0;
+}
+
+.justica-conteudo-notificacao {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.justica-cabecalho-item-notificacao {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--justica-size-6);
+  min-width: 0;
+}
+
+.justica-titulo-notificacao {
+  min-width: 0;
+  margin: 0;
+  color: var(--justica-color-text-primary);
+  font-size: var(--justica-size-7);
+  font-weight: var(--justica-font-weight-bold);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.justica-mensagem-notificacao {
+  display: -webkit-box;
+  margin: var(--justica-size-5) 0 0;
+  overflow: hidden;
+  color: var(--justica-color-text-secondary);
+  font-size: var(--justica-size-7);
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.justica-rodape-item-notificacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--justica-size-4);
+  min-height: var(--justica-size-16);
+  margin-top: var(--justica-size-4);
+}
+
+.justica-tempo-notificacao {
+  color: var(--justica-color-text-secondary);
+  font-size: var(--justica-size-6);
+  line-height: 1.2;
+}
+
+.justica-categoria-notificacao {
+  flex: 0 0 auto;
+  max-width: 116px;
+  overflow: hidden;
+  padding: var(--justica-size-2) var(--justica-size-5);
+  border: 1px solid var(--justica-color-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--justica-gray-700);
+  font-size: var(--justica-size-6);
+  font-weight: var(--justica-font-weight-regular);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.justica-botao-abrir-notificacao {
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: calc(var(--justica-size-2) * -1);
+  color: var(--justica-gray-500);
+  transition: background-color .16s ease;
+  margin-right: 0.5rem;
+}
+
+.justica-botao-abrir-notificacao:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--justica-color-primary);
+}
+
+.justica-botao-abrir-notificacao i {
+  font-size: var(--justica-size-7);
+  line-height: 1;
+}
+
+.justica-rodape-notificacoes {
+  padding: var(--justica-size-6) var(--justica-size-8);
+  border-top: 1px solid var(--justica-color-border);
+  text-align: center;
+}
+
+.justica-botao-central-notificacoes {
+  display: inline-block;
+  width: 100%;
+  padding: 7px var(--justica-size-4);
+  border-radius: var(--justica-size-3);
+  color: var(--justica-color-primary);
+  background: var(--justica-gray-100);
+  font-size: 13px;
+  font-weight: var(--justica-font-weight-bold);
+  text-decoration: none;
+}
+
+.justica-botao-central-notificacoes:hover {
+  background: var(--justica-gray-200);
+}
+
+.justica-estado-vazio-notificacoes,
+.justica-estado-erro-notificacoes {
+  margin: 0;
+  padding: var(--justica-size-16) var(--justica-size-10);
+  color: var(--justica-color-text-secondary);
+  font-size: var(--justica-size-7);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.justica-estado-erro-notificacoes {
+  color: var(--justica-red-700);
+}
+
+.justica-skeleton-notificacao {
+  height: 86px;
+  margin: var(--justica-size-6) var(--justica-size-7);
+  border-radius: var(--justica-size-4);
+  background: linear-gradient(
+    90deg,
+    var(--justica-gray-100) 25%,
+    var(--justica-gray-200) 37%,
+    var(--justica-gray-100) 63%
+  );
+  background-size: 400% 100%;
+  animation: justica-notificacoes-skeleton 1.4s ease infinite;
+}
+
+.justica-skeleton-notificacao--compacto {
+  height: var(--justica-size-18);
+}
+
+@keyframes justica-notificacoes-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes justica-notificacoes-skeleton {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@media (max-width: 420px) {
+  .justica-overlay-notificacoes {
+    right: calc(var(--justica-size-4) * -1);
+  }
+
+  .justica-cabecalho-notificacoes {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--justica-size-3);
+  }
+}

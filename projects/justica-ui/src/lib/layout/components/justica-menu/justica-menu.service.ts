@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, shareReplay} from 'rxjs/operators';
 import {JUSTICA_CORE_CONFIG, JusticaCoreConfig, JusticaDialogService} from '@justica/core';
-import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../../../configs/justica-ui.config';
 import {JUSTICA_LAYOUT_CONFIG, JusticaLayoutConfig} from '../../../configs/justica-layout.config';
 import {JusticaMenu} from '../../../models/justica-menu.model';
 

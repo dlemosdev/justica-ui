@@ -20,7 +20,7 @@ import {
   DialogPageComponent
 } from './pages/dialog-page/dialog-page.component';
 import {environment} from '../environments/environment';
-import {JusticaCoreModule} from '@justica/core';
+import {JusticaCoreModule, provideJusticaLogErroConfig} from '@justica/core';
 import {LayoutPageComponent} from './pages/layout-page/layout-page.component';
 import {ToastPageComponent} from './pages/toast-page/toast-page.component';
 
@@ -46,6 +46,11 @@ import {ToastPageComponent} from './pages/toast-page/toast-page.component';
     JusticaButtonModule,
     JusticaSidebarItemModule,
     JusticaToastModule
+  ],
+  providers: [
+    provideJusticaLogErroConfig({
+      modulo: 'Justiça UI Demo'
+    })
   ],
   bootstrap: [AppComponent]
 })

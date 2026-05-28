@@ -1,5 +1,6 @@
 export {
   JusticaMenu,
+  JusticaPagina,
   JusticaToastPosicaoHorizontal,
   JusticaToastPosicaoVertical,
   JusticaToastTipo

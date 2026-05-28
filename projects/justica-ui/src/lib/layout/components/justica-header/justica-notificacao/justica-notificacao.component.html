@@ -1,0 +1,119 @@
+<div class="justica-notificacoes-wrapper">
+  <div class="justica-botao-notificacoes" (click)="alternarOverlay()">
+    <ng-content></ng-content>
+    <span *ngIf="quantidadeNaoLidas > 0" class="justica-badge-notificacoes">
+      {{ quantidadeNaoLidas }}
+    </span>
+  </div>
+
+  <section
+    *ngIf="overlayAberto"
+    class="justica-overlay-notificacoes justica-overlay-notificacoes--aberto"
+    role="dialog"
+    aria-label="Painel de notificações"
+  >
+    <header class="justica-cabecalho-notificacoes">
+      <h2 class="justica-titulo-notificacoes">Notificações</h2>
+      <button
+        class="justica-acao-marcar-lidas"
+        type="button"
+        [disabled]="quantidadeNaoLidas === 0"
+        (click)="marcarTodasAsNotificacoesComoLidas()"
+      >
+        Marcar todas como lidas
+      </button>
+    </header>
+
+    <div
+      #listaNotificacoes
+      class="justica-lista-notificacoes"
+      justicaLazyLoading
+      [desabilitado]="lazyLoadingDesabilitado"
+      [distanciaFinal]="48"
+      (carregarMais)="carregarProximaPaginaNotificacoes()"
+    >
+      <ng-container
+        *ngIf="carregando && notificacoesOrdenadas.length === 0; else conteudoNotificacoes"
+      >
+        <div class="justica-skeleton-notificacao" aria-hidden="true"></div>
+        <div class="justica-skeleton-notificacao" aria-hidden="true"></div>
+        <div class="justica-skeleton-notificacao" aria-hidden="true"></div>
+      </ng-container>
+
+      <ng-template #conteudoNotificacoes>
+        <p *ngIf="ocorreuErro" class="justica-estado-erro-notificacoes">
+          Não foi possível carregar as notificações.
+        </p>
+
+        <p
+          *ngIf="!ocorreuErro && notificacoesOrdenadas.length === 0"
+          class="justica-estado-vazio-notificacoes"
+        >
+          Nenhuma notificação encontrada.
+        </p>
+
+        <article
+          *ngFor="let notificacao of notificacoesOrdenadas; trackBy: trackByNotificacao"
+          class="justica-item-notificacao"
+          [class.justica-item-notificacao--nao-visualizada]="!notificacao.visualizada"
+          [class.justica-item-notificacao--visualizada]="notificacao.visualizada"
+          tabindex="0"
+          (click)="selecionarNotificacao(notificacao)"
+        >
+          <span
+            class="justica-indicador-nao-lida"
+            [class.justica-indicador-lida]="notificacao.visualizada"
+            [attr.aria-hidden]="notificacao.visualizada ? 'true' : null"
+            aria-label="Notificação não lida"
+          ></span>
+
+          <div class="justica-conteudo-notificacao">
+            <div class="justica-cabecalho-item-notificacao">
+              <h3 class="justica-titulo-notificacao">{{ notificacao.titulo }}</h3>
+              <span class="justica-categoria-notificacao">
+                {{ notificacao.tipoNotificacao.descricao }}
+              </span>
+            </div>
+
+            <p class="justica-mensagem-notificacao" [title]="notificacao.conteudo">
+              {{ notificacao.conteudo }}
+            </p>
+
+            <div class="justica-rodape-item-notificacao">
+              <span class="justica-tempo-notificacao">{{ notificacao.descTempoNotificacao }}</span>
+              <a
+                *ngIf="notificacao.permiteRedirecionar && notificacao.urlRedirecionamento"
+                class="justica-botao-abrir-notificacao"
+                [href]="notificacao.urlRedirecionamento"
+                target="_blank"
+                rel="noopener"
+                aria-label="Abrir detalhamento da notificação"
+                (click)="abrirDetalhamentoNotificacao($event, notificacao)"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div
+          *ngIf="carregandoProximaPagina"
+          class="justica-skeleton-notificacao justica-skeleton-notificacao--compacto"
+          aria-hidden="true"
+        ></div>
+      </ng-template>
+    </div>
+
+    <footer class="justica-rodape-notificacoes">
+      <a
+        class="justica-botao-central-notificacoes"
+        href="/notificacao/central-notificacoes"
+        target="_blank"
+        rel="noopener"
+        (click)="irParaCentralNotificacoes()"
+      >
+        Ir para a Central de Notificações
+      </a>
+    </footer>
+  </section>
+</div>
