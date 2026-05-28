@@ -5,6 +5,7 @@ import {JusticaLogoutComponent} from './justica-logout/justica-logout.component'
 import {JusticaButtonModule} from '../../../components/justica-button';
 import {JusticaLogErroComponent} from './justica-log-erro/justica-log-erro.component';
 import {JusticaNotificacaoComponent} from './justica-notificacao/justica-notificacao.component';
+import {JusticaDiretivasModule} from '../../../diretivas/justica-diretivas.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import {JusticaNotificacaoComponent} from './justica-notificacao/justica-notific
     JusticaLogErroComponent,
     JusticaNotificacaoComponent
   ],
-  imports: [CommonModule, JusticaButtonModule],
+  imports: [CommonModule, JusticaButtonModule, JusticaDiretivasModule],
   exports: [JusticaHeaderComponent]
 })
 export class JusticaHeaderModule {}
