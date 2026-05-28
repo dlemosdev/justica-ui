@@ -5,7 +5,7 @@ export interface JusticaLayoutConfig {
 }
 
 export const JUSTICA_LAYOUT_CONFIG_PADRAO: JusticaLayoutConfig = {
-  exibirMenu: true,
+  exibirMenu: true
 };
 
 export function criarJusticaLayoutConfig(config: JusticaLayoutConfig = {}): JusticaLayoutConfig {
@@ -15,10 +15,13 @@ export function criarJusticaLayoutConfig(config: JusticaLayoutConfig = {}): Just
   };
 }
 
-export const JUSTICA_LAYOUT_CONFIG = new InjectionToken<JusticaLayoutConfig>('JUSTICA_LAYOUT_CONFIG', {
-  providedIn: 'root',
-  factory: criarJusticaLayoutConfig
-});
+export const JUSTICA_LAYOUT_CONFIG = new InjectionToken<JusticaLayoutConfig>(
+  'JUSTICA_LAYOUT_CONFIG',
+  {
+    providedIn: 'root',
+    factory: criarJusticaLayoutConfig
+  }
+);
 
 export function provideJusticaLayout(config?: JusticaLayoutConfig): Provider[] {
   return [

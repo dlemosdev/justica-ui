@@ -228,9 +228,8 @@
 .justica-botao-abrir-notificacao {
   position: relative;
   flex: 0 0 auto;
-  margin-right: calc(var(--justica-size-2) * -1);
   color: var(--justica-gray-500);
-  transition: background-color .16s ease;
+  transition: background-color 0.16s ease;
   margin-right: 0.5rem;
 }
 

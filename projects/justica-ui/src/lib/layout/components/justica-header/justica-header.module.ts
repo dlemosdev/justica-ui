@@ -16,5 +16,4 @@ import {JusticaNotificacaoComponent} from './justica-notificacao/justica-notific
   imports: [CommonModule, JusticaButtonModule],
   exports: [JusticaHeaderComponent]
 })
-export class JusticaHeaderModule {
-}
+export class JusticaHeaderModule {}

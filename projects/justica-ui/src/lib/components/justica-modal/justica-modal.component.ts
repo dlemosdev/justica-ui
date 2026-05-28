@@ -139,7 +139,9 @@ export class JusticaModalComponent implements OnInit, OnDestroy {
 
     const instancia = this._componenteRef.instance as JusticaModalComponenteComFechar;
     if (instancia.fechar) {
-      this._inscricaoFecharComponente = instancia.fechar.subscribe(() => this._service?.fecharModal());
+      this._inscricaoFecharComponente = instancia.fechar.subscribe(() =>
+        this._service?.fecharModal()
+      );
     }
 
     this._componenteRef.changeDetectorRef.detectChanges();

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {JusticaAppErro, JusticaLogErro} from '@justica/core/models';
 import {JusticaModalService} from '../../../../components/justica-modal/justica-modal.service';
@@ -11,10 +11,9 @@ interface JusticaLogErroDetalhe extends JusticaLogErro {
 @Component({
   selector: 'justica-log-erro',
   templateUrl: './justica-log-erro.component.html',
-  styleUrls: ['./justica-log-erro.component.css'],
+  styleUrls: ['./justica-log-erro.component.css']
 })
 export class JusticaLogErroComponent implements OnInit {
-
   logs: JusticaLogErroDetalhe[] = [];
   readonly detalhesVisiveis: {[indice: number]: boolean} = {};
 
@@ -24,19 +23,14 @@ export class JusticaLogErroComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Carregando erros...', localStorage.getItem(`erros`));
     this.carregarErros();
   }
 
   carregarErros(): void {
-    console.log('Carregando erros...', this._justicaLogErroService
-      .listarErros());
-    this.logs = this._justicaLogErroService
-      .listarErros()
-      .map((log) => ({
-        ...log,
-        erro: this.normalizarErro(log.erro)
-      }));
+    this.logs = this._justicaLogErroService.listarErros().map((log) => ({
+      ...log,
+      erro: this.normalizarErro(log.erro)
+    }));
   }
 
   mostrarDetalhe(indice: number): void {

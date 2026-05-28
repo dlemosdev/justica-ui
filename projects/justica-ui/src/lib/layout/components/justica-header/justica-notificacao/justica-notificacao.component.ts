@@ -3,7 +3,8 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener, Inject,
+  HostListener,
+  Inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -16,7 +17,6 @@ import {finalize} from 'rxjs/operators';
 
 import {JusticaNotificacao} from './justica-notificacao.model';
 import {JusticaNotificacaoService} from './justica-notificacao.service';
-import {Router} from '@angular/router';
 import {JUSTICA_WINDOW, JusticaWindow} from '@justica/core';
 
 @Component({
@@ -101,11 +101,11 @@ export class JusticaNotificacaoComponent implements OnInit, OnChanges, OnDestroy
   }
 
   selecionarNotificacao(notificacao: JusticaNotificacao): void {
-    if(!notificacao.visualizada) {
+    if (!notificacao.visualizada) {
       this.marcarNotificacaoComoLida(notificacao);
     }
 
-    if(notificacao.permiteRedirecionar || notificacao.urlRedirecionamento) {
+    if (notificacao.permiteRedirecionar || notificacao.urlRedirecionamento) {
       this._window.open(notificacao.urlRedirecionamento, '_blank');
     }
   }

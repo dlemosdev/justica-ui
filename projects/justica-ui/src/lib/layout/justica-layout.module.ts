@@ -7,7 +7,6 @@ import {JusticaMenuModule} from './components/justica-menu/justica-menu.module';
 import {JusticaHeaderModule} from './components/justica-header/justica-header.module';
 import {JusticaSidebarModule} from './components/justica-sidebar/justica-sidebar.module';
 import {JusticaUiConfig, provideJusticaLayout} from '../configs';
-import {provideJusticaLogErroConfig} from '@justica/core';
 
 @NgModule({
   imports: [
@@ -21,15 +20,13 @@ import {provideJusticaLogErroConfig} from '@justica/core';
     JusticaModalModule
   ],
   declarations: [JusticaLayoutComponent],
-  exports: [JusticaLayoutComponent],
+  exports: [JusticaLayoutComponent]
 })
 export class JusticaLayoutModule {
   static forRoot(configuracao?: JusticaUiConfig): ModuleWithProviders<JusticaLayoutModule> {
     return {
       ngModule: JusticaLayoutModule,
-      providers: [
-        provideJusticaLayout(configuracao),
-      ]
+      providers: [provideJusticaLayout(configuracao)]
     };
   }
 }

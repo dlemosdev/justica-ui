@@ -16,7 +16,9 @@ describe('JusticaLogErroComponent', () => {
       'listarErros',
       'exportarHtml'
     ]);
-    modalService = jasmine.createSpyObj<JusticaModalService>('JusticaModalService', ['fecharModal']);
+    modalService = jasmine.createSpyObj<JusticaModalService>('JusticaModalService', [
+      'fecharModal'
+    ]);
     service.listarErros.and.returnValue([
       {
         modulo: 'Justica',

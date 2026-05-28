@@ -9,7 +9,7 @@
 
         <span class="justica-log-erro__campo justica-log-erro__campo--data">
           <strong>Data:</strong>
-          {{ log.data | date: 'dd/MM/yyyy HH:mm:ss' }}
+          {{ log.data | date : 'dd/MM/yyyy HH:mm:ss' }}
         </span>
 
         <span class="justica-log-erro__campo justica-log-erro__campo--status">
@@ -32,12 +32,18 @@
           {{ detalhesVisiveis[i] ? '-' : '+' }}
         </button>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.title">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.title"
+        >
           <strong>Título:</strong>
           {{ log.erro.title }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="obterDetalhe(log.erro)">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="obterDetalhe(log.erro)"
+        >
           <strong>Detalhe:</strong>
           {{ obterDetalhe(log.erro) }}
         </span>
@@ -70,17 +76,26 @@
           {{ log.erro.metodoHttp }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.path">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.path"
+        >
           <strong>URL:</strong>
           {{ log.erro.path }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.dataUser">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.dataUser"
+        >
           <strong>Dados do usuário logado:</strong>
           {{ log.erro.dataUser }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.className">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.className"
+        >
           <strong>Classe:</strong>
           {{ log.erro.className }}
         </span>
@@ -103,17 +118,26 @@
           {{ log.erro.exceptionName || log.erro.exception }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.parametrosExtras">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.parametrosExtras"
+        >
           <strong>Parâmetros enviados:</strong>
           {{ log.erro.parametrosExtras | json }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.error">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.error"
+        >
           <strong>Erro:</strong>
           {{ log.erro.error }}
         </span>
 
-        <span class="justica-log-erro__campo justica-log-erro__campo--linha" *ngIf="log.erro && log.erro.cause">
+        <span
+          class="justica-log-erro__campo justica-log-erro__campo--linha"
+          *ngIf="log.erro && log.erro.cause"
+        >
           <strong>Causa:</strong>
           {{ log.erro.cause }}
         </span>
@@ -143,7 +167,11 @@
       Exportar
     </button>
 
-    <button type="button" class="justica-log-erro__botao justica-log-erro__botao--perigo" (click)="fecharLog()">
+    <button
+      type="button"
+      class="justica-log-erro__botao justica-log-erro__botao--perigo"
+      (click)="fecharLog()"
+    >
       Fechar
     </button>
   </footer>
