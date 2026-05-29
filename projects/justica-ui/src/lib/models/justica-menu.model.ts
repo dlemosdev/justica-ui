@@ -7,4 +7,6 @@ export type JusticaMenu = {
   route?: string;
   icon?: string;
   items?: JusticaMenu[];
+  roles?: string[];
+  allRoles?: boolean;
 };
