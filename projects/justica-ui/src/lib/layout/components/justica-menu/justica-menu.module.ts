@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {JusticaMenuComponent} from './justica-menu.component';
 import {JusticaMenuItemComponent} from './justica-menu-item/justica-menu-item.component';
-import {JusticaButtonModule} from '../../../components/justica-button';
+import {JusticaButtonModule} from '../../../components/justica-button/justica-button.module';
 
 @NgModule({
   imports: [CommonModule, JusticaButtonModule],

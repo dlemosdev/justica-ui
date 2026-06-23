@@ -1,0 +1,32 @@
+include:
+  - project: 'devops/templates/template-gitlab-ci'
+    ref: master
+    #ref: '8e468038c81ad2c6f6e4f40467ea0710e267b3be'
+    file: '/Angular.gitlab-ci.yml'
+
+Publish Angular Package:
+  stage: Publish
+  tags: [angular8-build]
+  script:
+    - |
+      if [[ ! -f "./dist/justica-ui/package.json" ]]; then
+        echo -e "\e[31m[ERRO] Arquivo ./dist/justica-ui/package.json nao encontrado.\e[39m"
+        exit 1
+      fi
+
+      if [ -z "$CI_COMMIT_TAG" ]; then
+        npm publish ./dist/justica-ui --registry=https://nexus.stj.jus.br/repository/npm-snapshot/
+      else
+        npm publish ./dist/justica-ui --registry=https://nexus.stj.jus.br/repository/npm-release/
+      fi
+  dependencies: ['Build']
+  cache:
+    key: '$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG'
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME == "main"
+      when: never
+    - if: $CI_COMMIT_REF_NAME == "contrato" || $CI_COMMIT_REF_NAME =~ /^contrato-.*$/ || $CI_COMMIT_REF_NAME =~ /^support\/.*$/
+      when: never
+    - if: $ANGULAR_PACKAGE == "true"
+      when: on_success
+    - when: never

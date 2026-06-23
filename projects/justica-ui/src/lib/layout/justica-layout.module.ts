@@ -6,7 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {JusticaMenuModule} from './components/justica-menu/justica-menu.module';
 import {JusticaHeaderModule} from './components/justica-header/justica-header.module';
 import {JusticaSidebarModule} from './components/justica-sidebar/justica-sidebar.module';
-import {JusticaUiConfig, provideJusticaLayout} from '../configs';
+import {JusticaLayoutConfig, provideJusticaLayout} from './justica-layout.config';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import {JusticaUiConfig, provideJusticaLayout} from '../configs';
   exports: [JusticaLayoutComponent]
 })
 export class JusticaLayoutModule {
-  static forRoot(configuracao?: JusticaUiConfig): ModuleWithProviders<JusticaLayoutModule> {
+  static forRoot(configuracao?: JusticaLayoutConfig): ModuleWithProviders<JusticaLayoutModule> {
     return {
       ngModule: JusticaLayoutModule,
       providers: [provideJusticaLayout(configuracao)]

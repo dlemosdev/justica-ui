@@ -49,7 +49,7 @@ export class JusticaSidebarComponent implements OnInit, OnDestroy {
   }
 
   private preencherInfoUsuarioLogado(): void {
-    const usuarioLogado = this._justicaUsuarioService.obterUsuario();
+    const usuarioLogado = this._justicaUsuarioService.usuarioLogado;
     if (usuarioLogado) {
       this.nomeUsuario = StringUtils.capitalizar(usuarioLogado.nomeUsuario);
       this.localUsuario = StringUtils.capitalizar(usuarioLogado.nomeLocal);

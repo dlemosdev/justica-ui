@@ -1,16 +1,20 @@
 import {InjectionToken, Provider} from '@angular/core';
 
 export interface JusticaUiConfig {
-  exibirMenu?: boolean;
-  exibirTempoSessao?: boolean;
+  layout: {
+    exibirMenu?: boolean;
+    exibirTempoSessao?: boolean;
+  };
 }
 
 export const JUSTICA_UI_CONFIG_PADRAO: JusticaUiConfig = {
-  exibirMenu: true,
-  exibirTempoSessao: true
+  layout: {
+    exibirMenu: true,
+    exibirTempoSessao: true
+  }
 };
 
-export function criarJusticaUiConfig(config: JusticaUiConfig = {}): JusticaUiConfig {
+export function criarJusticaUiConfig(config?: JusticaUiConfig): JusticaUiConfig {
   return {
     ...JUSTICA_UI_CONFIG_PADRAO,
     ...config

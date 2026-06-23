@@ -1,24 +1,27 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule, Provider} from '@angular/core';
 
 import {JusticaButtonModule} from './components/justica-button/justica-button.module';
+import {JusticaSidebarItemModule} from './components/justica-sidebar-item/justica-sidebar-item.module';
 import {JusticaToastModule} from './components/justica-toast/justica-toast.module';
-import {JusticaLayoutModule} from './layout/justica-layout.module';
 import {JusticaUiConfig, provideJusticaUi} from './configs/justica-ui.config';
-import {provideJusticaLayout} from './configs/justica-layout.config';
+import {JusticaLayoutConfig, provideJusticaLayout} from './layout/justica-layout.config';
+import {JusticaLayoutModule} from './layout/justica-layout.module';
 
 @NgModule({
-  declarations: [],
-  imports: [JusticaButtonModule, JusticaToastModule, JusticaLayoutModule.forRoot()],
-  exports: [JusticaButtonModule, JusticaToastModule, JusticaLayoutModule]
+  exports: [JusticaButtonModule, JusticaToastModule, JusticaSidebarItemModule, JusticaLayoutModule]
 })
 export class JusticaUiModule {
   static forRoot(configuracao?: JusticaUiConfig): ModuleWithProviders<JusticaUiModule> {
+    const providers: Provider[] = [provideJusticaUi(configuracao)];
+    if (configuracao?.layout) {
+      const layoutConfig: JusticaLayoutConfig = {
+        ...configuracao.layout
+      };
+      providers.push(provideJusticaLayout(layoutConfig));
+    }
     return {
       ngModule: JusticaUiModule,
-      providers: [
-        provideJusticaUi(configuracao),
-        provideJusticaLayout({exibirMenu: configuracao?.exibirMenu ?? true})
-      ]
+      providers: providers
     };
   }
 }

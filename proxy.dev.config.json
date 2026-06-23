@@ -1,6 +1,6 @@
 {
-  "/ws": {
-    "target": "https://wsjus-dev.web.stj.jus.br/",
+  "/realms/stj": {
+    "target": "https://keycloak-dev.web.stj.jus.br",
     "secure": false,
     "changeOrigin": true
   },

@@ -104,14 +104,15 @@
   font-size: var(--justica-size-5);
   font-weight: var(--justica-font-weight-medium);
   letter-spacing: 0.02em;
+  line-height: 1;
   opacity: 0.95;
-  margin-top: var(--justica-size-5);
 }
 
 .justica-cabecalho__datahora {
   font-size: var(--justica-size-6);
   font-weight: var(--justica-font-weight-medium);
   white-space: nowrap;
+  margin-top: var(--justica-size-5);
 }
 
 .justica-cabecalho__acoes-customizadas {

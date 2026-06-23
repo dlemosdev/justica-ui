@@ -2,10 +2,12 @@ import {InjectionToken, Provider} from '@angular/core';
 
 export interface JusticaLayoutConfig {
   exibirMenu?: boolean;
+  exibirTempoSessao?: boolean;
 }
 
 export const JUSTICA_LAYOUT_CONFIG_PADRAO: JusticaLayoutConfig = {
-  exibirMenu: true
+  exibirMenu: true,
+  exibirTempoSessao: false
 };
 
 export function criarJusticaLayoutConfig(config: JusticaLayoutConfig = {}): JusticaLayoutConfig {

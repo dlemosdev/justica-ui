@@ -7,15 +7,9 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import {
-  JusticaAuthService,
-  JusticaInatividadeUsuarioService,
-  JusticaSessaoMonitorService,
-  JusticaUsuarioService
-} from '@justica/core/services';
+import {JusticaSessaoMonitorService, JusticaUsuarioService} from '@justica/core/services';
 
 import {JUSTICA_UI_CONFIG, JusticaUiConfig} from '../configs/justica-ui.config';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'justica-layout[nomeProjeto][versao]',
@@ -28,42 +22,24 @@ export class JusticaLayoutComponent implements OnInit, OnDestroy {
   @Input() nomeProjeto!: string;
   @Input() versao!: string;
 
-  readonly usuarioLogado: boolean;
-  private readonly _subscription = new Subscription();
+  readonly usuarioLogado: boolean = this._justicaUsuarioService.possuiUsuarioLogado() ?? false;
 
   constructor(
     @Inject(JUSTICA_UI_CONFIG)
     private readonly _config: JusticaUiConfig,
-    private readonly _justicaAuthService: JusticaAuthService,
     private readonly _justicaSessaoMonitorService: JusticaSessaoMonitorService,
-    private readonly _justicaUsuarioService: JusticaUsuarioService,
-    private readonly _justicaInatividadeUsuarioService: JusticaInatividadeUsuarioService
-  ) {
-    this.usuarioLogado = this._justicaUsuarioService.obterUsuario() !== null;
-  }
+    private readonly _justicaUsuarioService: JusticaUsuarioService
+  ) {}
 
   ngOnInit(): void {
-    this._justicaSessaoMonitorService.iniciarMonitoramento();
-    this.iniciarMonitoramentoInatividadeUsuario();
+    this._justicaSessaoMonitorService.iniciar();
   }
 
   ngOnDestroy(): void {
-    this._justicaInatividadeUsuarioService.pararMonitoramento();
-    this._subscription.unsubscribe();
+    this._justicaSessaoMonitorService.parar();
   }
 
   get exibirMenu(): boolean {
-    return this._config.exibirMenu ?? true;
-  }
-
-  private iniciarMonitoramentoInatividadeUsuario() {
-    if (this.usuarioLogado) {
-      this._justicaInatividadeUsuarioService.iniciarMonitoramento();
-      this._subscription.add(
-        this._justicaInatividadeUsuarioService.usuarioInativo$.subscribe(() =>
-          this._justicaAuthService.realizarLogout()
-        )
-      );
-    }
+    return this._config.layout.exibirMenu ?? true;
   }
 }

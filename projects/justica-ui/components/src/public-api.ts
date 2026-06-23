@@ -14,5 +14,7 @@ export {
   JusticaToastConfig,
   JusticaToastModule,
   JusticaToastService,
-  JusticaToastTipo
+  JusticaToastTipo,
+  JusticaSidebarItemComponent,
+  JusticaSidebarItemModule
 } from '@justica/ui';

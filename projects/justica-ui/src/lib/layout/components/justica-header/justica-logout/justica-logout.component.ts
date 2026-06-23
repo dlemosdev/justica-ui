@@ -18,6 +18,6 @@ export class JusticaLogoutComponent {
   }
 
   confirmar(): void {
-    this._justicaAuthService.realizarLogout();
+    this._justicaAuthService.logout();
   }
 }
